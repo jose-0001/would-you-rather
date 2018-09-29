@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import DropDownSelection from './DropDownSelection';
 
 class App extends Component {
   render() {
     return (
       <div>
-        Hello world!
+        <DropDownSelection />
       </div>
     );
   }
