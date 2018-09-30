@@ -8,6 +8,7 @@ import {
   Icon,
   Segment
 } from "semantic-ui-react";
+import { setAuthedUser } from "../actions/authedUser";
 
 class DropDownSelection extends Component {
   handleLogInClick = e => {
@@ -17,17 +18,17 @@ class DropDownSelection extends Component {
 
   render() {
     const users = Object.values(this.props.users);
-    const open = false;
+    const { authedUser } = this.props;
     return (
-      <Grid
-        container
-        columns={2}
-        style={{ margin: 14}}
-        centered
-      >
+      <Grid container columns={2} style={{ margin: 14 }} centered>
         <Header as="h2" icon textAlign="center" style={{ margin: 12 }}>
           <Icon name="users" circular />
-          <Header.Content>Would You Rather...</Header.Content>
+          <Header.Content>
+            {authedUser === null
+              ? "Hey, Would You Rather..."
+              : `Hey ${authedUser.name}
+            `}
+          </Header.Content>
         </Header>
         <Segment style={{ margin: "auto", width: 500 }}>
           <Dropdown
@@ -35,19 +36,22 @@ class DropDownSelection extends Component {
             placeholder="Select User"
             fluid
             selection
-            options={users.map(u => {
+            options={users.map(user => {
               return {
-                text: u.name,
-                value: u.id,
+                text: user.name,
+                value: user.id,
                 image: {
                   avatar: true,
-                  src: u.avatarURL
+                  src: user.avatarURL
+                },
+                onClick: () => {
+                  this.props.dispatch(setAuthedUser(user));
                 }
               };
             })}
           />
           <Button primary fluid onClick={this.handleLogInClick}>
-            Login
+            Sign In
           </Button>
         </Segment>
       </Grid>
@@ -55,8 +59,8 @@ class DropDownSelection extends Component {
   }
 }
 
-function mapStateToProps({ users }) {
-  return { users };
+function mapStateToProps({ users, authedUser }) {
+  return { users, authedUser };
 }
 
 export default connect(mapStateToProps)(DropDownSelection);
