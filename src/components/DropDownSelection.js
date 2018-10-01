@@ -22,66 +22,76 @@ class DropDownSelection extends Component {
     const users = Object.values(this.props.users);
     const { authedUser } = this.props;
     return (
-      <Grid
-        textAlign="center"
-        style={{ height: "100%" }}
-        verticalAlign="middle"
-      >
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as="h2" icon textAlign="center" color="teal">
-            <Icon name="users" circular />
-            <Header.Content>
-              {authedUser === null
-                ? "Hey, Would You Rather..."
-                : `Hey ${authedUser.name}
+      <div className="login-form">
+        <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        height: 100%;
+      }
+    `}</style>
+
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" icon textAlign="center" color="teal">
+              <Icon name="users" circular />
+              <Header.Content>
+                {authedUser === null
+                  ? "Hey, Would You Rather..."
+                  : `Hey ${authedUser.name}
             `}
-            </Header.Content>
-          </Header>
-          <Form size="large">
-            <Segment stacked>
-              <Form.Input
+              </Header.Content>
+            </Header>
+            <Form size="large">
+              <Segment stacked>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Full Name"
+                />
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="User Name"
+                />
+                <Button color="teal" fluid onClick={this.handleSignUpClick}>
+                  Sign Up
+                </Button>
+              </Segment>
+            </Form>
+            <Segment>
+              <Dropdown
+                style={{ marginBottom: 8 }}
+                placeholder="Select User"
                 fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="Full Name"
+                selection
+                options={users.map(user => {
+                  return {
+                    text: user.name,
+                    value: user.id,
+                    image: {
+                      avatar: true,
+                      src: user.avatarURL
+                    },
+                    onClick: () => {
+                      this.props.dispatch(setAuthedUser(user));
+                    }
+                  };
+                })}
               />
-              <Form.Input
-                fluid
-                icon="user"
-                iconPosition="left"
-                placeholder="User Name"
-              />
-              <Button color="teal" fluid onClick={this.handleSignUpClick}>
-                Sign Up
+              <Button primary fluid onClick={this.handleLogInClick}>
+                Sign In
               </Button>
             </Segment>
-          </Form>
-          <Segment>
-            <Dropdown
-              style={{ marginBottom: 8 }}
-              placeholder="Select User"
-              fluid
-              selection
-              options={users.map(user => {
-                return {
-                  text: user.name,
-                  value: user.id,
-                  image: {
-                    avatar: true,
-                    src: user.avatarURL
-                  },
-                  onClick: () => {
-                    this.props.dispatch(setAuthedUser(user));
-                  }
-                };
-              })}
-            />
-            <Button primary fluid onClick={this.handleLogInClick}>
-              Sign In
-            </Button>
-          </Segment>
-        </Grid.Column>
-      </Grid>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }
