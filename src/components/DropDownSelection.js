@@ -7,8 +7,7 @@ import {
   Header,
   Icon,
   Segment,
-  Form,
-  Message
+  Form
 } from "semantic-ui-react";
 import { setAuthedUser } from "../actions/authedUser";
 

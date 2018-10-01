@@ -6,11 +6,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <ul>
-          {this.props.questionIds.map(id => (
-            <Questions id={id} key={id} />
-          ))}
-        </ul>
+        {this.props.questionIds.map(id => (
+          <Questions id={id} key={id} />
+        ))}
       </div>
     );
   }
