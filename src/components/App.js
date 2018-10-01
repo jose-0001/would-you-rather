@@ -9,13 +9,14 @@ class App extends Component {
     this.props.dispatch(handleInitialData());
   }
   render() {
-    return <div>{this.props.loading === true ? null : <Dashboard />}</div>;
+    return <DropDownSelection />
   }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, questions }) {
   return {
-    loading: authedUser === null
+    loading: authedUser === null,
+    questions
   };
 }
 

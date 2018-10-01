@@ -1,23 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatQuestion } from "../utils/_DATA";
+import { Image, Segment, Grid, Divider, Header } from "semantic-ui-react";
 
 class Questions extends Component {
   render() {
-    console.log(this.props)
+    console.log(this.props);
+    const { users, question } = this.props;
     return (
-      <div className="question">
-        <h1>Questions</h1>
-      </div>
+        <Segment className="question" style={{ marginRight: 40 }}>
+          <Image size="small" circular src={users.avatarURL} />
+          <Header as="h1">Would you rather...</Header>
+          <Header as="h3" />
+        </Segment>
     );
   }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
+
   return {
-    authedUser,
-    questions: formatQuestion(question, users[question.author], authedUser)
+    question: question,
+    users: users[question.author]
   };
 }
 

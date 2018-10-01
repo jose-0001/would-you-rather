@@ -143,9 +143,9 @@ export function getInitialData() {
 
 export function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
+    author,
     id: generateUID(),
     timestamp: Date.now(),
-    author,
     optionOne: {
       votes: [],
       text: optionOneText,
