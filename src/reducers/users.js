@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from "../actions/users";
+import { RECEIVE_USERS, ADD_USER } from "../actions/users";
 
 export default function user(state = {}, action) {
   switch (action.type) {
@@ -6,6 +6,11 @@ export default function user(state = {}, action) {
       return {
         ...state,
         ...action.users
+      };
+    case ADD_USER:
+      return {
+        ...state,
+        [action.user.id]: { ...action.user }
       };
     default:
       return state;

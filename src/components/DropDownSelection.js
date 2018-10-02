@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setAuthedUser } from "../actions/authedUser";
+import { handleAddUser } from "../actions/users";
 import {
   Grid,
   Dropdown,
@@ -9,17 +11,36 @@ import {
   Segment,
   Form
 } from "semantic-ui-react";
-import { setAuthedUser } from "../actions/authedUser";
 
 class DropDownSelection extends Component {
+  state = {
+    name: "",
+    userId: ""
+  };
+
   handleLogInClick = e => {
     e.preventDefault();
-    console.log("clicked!");
+  };
+
+  handleSignUpClick = e => {
+    e.preventDefault();
+    const { name, userId } = this.state;
+    this.props.dispatch(handleAddUser(name, userId));
+    this.setState({ name: "", userId: "" });
+  };
+
+  handleNameInput = e => {
+    e.preventDefault();
+    this.setState({ name: e.target.value });
+  };
+
+  handleUserIdInput = e => {
+    e.preventDefault();
+    this.setState({ userId: e.target.value });
   };
 
   render() {
-    const users = Object.values(this.props.users);
-    const { authedUser } = this.props;
+    const { authedUser, users } = this.props;
     return (
       <div className="login-form">
         <style>{`
@@ -29,7 +50,6 @@ class DropDownSelection extends Component {
         height: 100%;
       }
     `}</style>
-
         <Grid
           textAlign="center"
           style={{ height: "100%" }}
@@ -52,12 +72,16 @@ class DropDownSelection extends Component {
                   icon="user"
                   iconPosition="left"
                   placeholder="Full Name"
+                  onChange={this.handleNameInput}
+                  value={this.state.name}
                 />
                 <Form.Input
                   fluid
                   icon="user"
                   iconPosition="left"
                   placeholder="User Name"
+                  onChange={this.handleUserIdInput}
+                  value={this.state.userId}
                 />
                 <Button color="teal" fluid onClick={this.handleSignUpClick}>
                   Sign Up
@@ -96,7 +120,10 @@ class DropDownSelection extends Component {
 }
 
 function mapStateToProps({ users, authedUser }) {
-  return { users, authedUser };
+  return {
+    users: Object.values(users),
+    authedUser
+  };
 }
 
 export default connect(mapStateToProps)(DropDownSelection);
