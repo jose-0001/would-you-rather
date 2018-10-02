@@ -21,7 +21,7 @@ class Login extends Component {
 
   handleLogInClick = e => {
     e.preventDefault();
-    return <Redirect to="/home" />;
+    this.props.history.push("/home");
   };
 
   handleSignUpClick = e => {
