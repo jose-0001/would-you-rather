@@ -6,6 +6,13 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        margin: 4%;
+      }
+    `}</style>
         {this.props.questionIds.map(id => (
           <Questions id={id} key={id} />
         ))}

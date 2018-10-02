@@ -14,41 +14,50 @@ class Nav extends Component {
     console.log(this.props);
     const { activeItem } = this.state;
     return (
-      <Menu attached="top" tabular>
-        <Menu.Item
-          as={NavLink}
-          to="/home"
-          name="home"
-          active={activeItem === "home"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          as={NavLink}
-          to="/new"
-          name="New Question"
-          active={activeItem === "New Question"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Item
-          as={NavLink}
-          to="/leaderboard"
-          name="Leader Board"
-          active={activeItem === "Leader Board"}
-          onClick={this.handleItemClick}
-        />
-        <Menu.Menu position="right">
-          <Menu.Item>
-            <Image avatar src={this.props.image} />
-          </Menu.Item>
+      <div>
+        <style>{`
+      body > div,
+      body > div > div,
+      body > div > div > div.login-form {
+        margin: 4%;
+      }
+    `}</style>
+        <Menu attached="top" tabular>
           <Menu.Item
             as={NavLink}
-            to="/login"
-            name="Log Out"
-            active={activeItem === "Log Out"}
+            to="/home"
+            name="home"
+            active={activeItem === "home"}
             onClick={this.handleItemClick}
           />
-        </Menu.Menu>
-      </Menu>
+          <Menu.Item
+            as={NavLink}
+            to="/new"
+            name="New Question"
+            active={activeItem === "New Question"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={NavLink}
+            to="/leaderboard"
+            name="Leader Board"
+            active={activeItem === "Leader Board"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position="right">
+            <Menu.Item>
+              <Image avatar src={this.props.image} />
+            </Menu.Item>
+            <Menu.Item
+              as={NavLink}
+              to="/login"
+              name="Log Out"
+              active={activeItem === "Log Out"}
+              onClick={this.handleItemClick}
+            />
+          </Menu.Menu>
+        </Menu>
+      </div>
     );
   }
 }

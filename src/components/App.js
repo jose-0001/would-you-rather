@@ -15,9 +15,6 @@ import QuestionPage from "./QuestionPage";
 import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
-  state = {
-    navBarHidden: true
-  };
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
@@ -26,18 +23,22 @@ class App extends Component {
       <Router>
         <Switch>
           <Fragment>
-            {this.state.navBarHidden === false ? <Nav /> : null}
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return <Redirect to="/login" />;
-              }}
-            />
-            <Route path="/login" component={Login} />
-            <Route path="/home" component={Dashboard} />
-            <Route path="/new" component={NewQuestion} />
-            <Route path="/leaderboard" component={LeaderBoard} />
+            <div>
+              <Nav />
+            </div>
+            <div>
+              <Route
+                exact
+                path="/"
+                render={() => {
+                  return <Redirect to="/login" />;
+                }}
+              />
+              <Route path="/login" component={Login} />
+              <Route path="/home" component={Dashboard} />
+              <Route path="/new" component={NewQuestion} />
+              <Route path="/leaderboard" component={LeaderBoard} />
+            </div>
           </Fragment>
         </Switch>
       </Router>
