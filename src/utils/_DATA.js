@@ -234,9 +234,10 @@ export function saveUser(name, id) {
     setTimeout(() => {
       users = {
         ...users,
-        [id]: formattedUser.id
+        [id]: formattedUser
       };
       res(formattedUser);
+      console.log(users);
     }, 1000);
   });
 }
