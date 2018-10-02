@@ -12,7 +12,7 @@ import {
   Form
 } from "semantic-ui-react";
 
-class DropDownSelection extends Component {
+class Login extends Component {
   state = {
     name: "",
     userId: ""
@@ -126,4 +126,4 @@ function mapStateToProps({ users, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(DropDownSelection);
+export default connect(mapStateToProps)(Login);
