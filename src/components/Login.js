@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { setAuthedUser } from "../actions/authedUser";
 import { handleAddUser } from "../actions/users";
 import {
@@ -20,6 +21,7 @@ class Login extends Component {
 
   handleLogInClick = e => {
     e.preventDefault();
+    return <Redirect to="/home" />;
   };
 
   handleSignUpClick = e => {

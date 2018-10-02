@@ -15,36 +15,35 @@ import QuestionPage from "./QuestionPage";
 import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
+  state = {
+    navBarHidden: true
+  };
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
   render() {
     return (
       <Router>
-        <Fragment>
-          <Route exact path="/login" component={LoginContainer} />
-          <Route component={DefaultContainer} />
-        </Fragment>
+        <Switch>
+          <Fragment>
+            {this.state.navBarHidden === false ? <Nav /> : null}
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return <Redirect to="/login" />;
+              }}
+            />
+            <Route path="/login" component={Login} />
+            <Route path="/home" component={Dashboard} />
+            <Route path="/new" component={NewQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
+          </Fragment>
+        </Switch>
       </Router>
     );
   }
 }
-
-const LoginContainer = () => (
-  <div>
-    <Route exact path="/" render={() => <Redirect to="/login" />} />
-    <Route path="/login" component={Login} />
-  </div>
-);
-
-const DefaultContainer = () => (
-  <div>
-    <Nav />
-    <Route path="/home" component={Dashboard} />
-    <Route path="/new" component={NewQuestion} />
-    <Route path="/leaderboard" component={LeaderBoard} />
-  </div>
-);
 
 // to gain access to dispatch we need to connect
 export default connect()(App);
