@@ -1,25 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-export default function Nav() {
-  return (
-    <nav className="nav">
-      <ul>
-        <li>
-          <NavLink to="/" exact activeClassName="active">
-            Dashboard
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/new" activeClassName="active">
-            New Question
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" activeClassName="active">
-            Logout
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
-  );
+import { Menu, Segment } from "semantic-ui-react";
+
+class Nav extends Component {
+  state = {
+    activeItem: "home"
+  };
+
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  render() {
+    const { activeItem } = this.state;
+    return (
+
+        <Menu attached="top" tabular>
+          <Menu.Item
+            as={NavLink}
+            to="/home"
+            name="home"
+            active={activeItem === "home"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={NavLink}
+            to="/new"
+            name="New Question"
+            active={activeItem === "New Question"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={NavLink}
+            to="/leaderboard"
+            name="Leader Board"
+            active={activeItem === "Leader Board"}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Menu position="right">
+          <Menu.Item
+            as={NavLink}
+            to="/login"
+            name="Log Out"
+            active={activeItem === "Log Out"}
+            onClick={this.handleItemClick}
+          />
+          </Menu.Menu>
+        </Menu>
+
+    );
+  }
 }
+
+export default Nav;

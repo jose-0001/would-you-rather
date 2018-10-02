@@ -56,7 +56,7 @@ class Login extends Component {
           verticalAlign="middle"
         >
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" icon textAlign="center" color="teal">
+            <Header as="h2" icon textAlign="center">
               <Icon name="users" circular />
               <Header.Content>
                 {authedUser === null
@@ -83,7 +83,7 @@ class Login extends Component {
                   onChange={this.handleUserIdInput}
                   value={this.state.userId}
                 />
-                <Button color="teal" fluid onClick={this.handleSignUpClick}>
+                <Button primary fluid onClick={this.handleSignUpClick}>
                   Sign Up
                 </Button>
               </Segment>
@@ -108,7 +108,7 @@ class Login extends Component {
                   };
                 })}
               />
-              <Button primary fluid onClick={this.handleLogInClick}>
+              <Button secondary fluid onClick={this.handleLogInClick}>
                 Sign In
               </Button>
             </Segment>
