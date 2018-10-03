@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 import { handleAddUser } from "../actions/users";
+import { toggleNav } from "../actions/toggleNav";
 import {
   Grid,
   Dropdown,
@@ -21,6 +22,7 @@ class Login extends Component {
   handleLogInClick = e => {
     e.preventDefault();
     this.props.history.push("/home");
+    this.props.dispatch(toggleNav(false));
   };
 
   handleSignUpClick = e => {
@@ -120,10 +122,11 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps({ users, authedUser }) {
+function mapStateToProps({ users, authedUser, toggleNav }) {
   return {
     users: Object.values(users),
-    authedUser
+    authedUser,
+    toggleNav
   };
 }
 

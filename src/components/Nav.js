@@ -2,18 +2,23 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { Menu, Image, Header } from "semantic-ui-react";
+import { toggleNav } from "../actions/toggleNav";
 
 class Nav extends Component {
   state = {
-    activeItem: "home",
-    hiddenTab: true
+    activeItem: ""
   };
 
-  handleItemClick = (e, { name }) =>
-    this.setState({ activeItem: name, hiddenTab: false });
+  handleItemClick = (e, { name }) => {
+    console.log(e.target);
+    this.setState({ activeItem: name });
+    this.props.dispatch(toggleNav(false));
+  };
 
-  handleLogOutClick = (e, { name }) =>
-    this.setState({ activeItem: name, hiddenTab: true });
+  handleLogOutClick = (e, { name }) => {
+    this.setState({ activeItem: name });
+    this.props.dispatch(toggleNav(true));
+  };
 
   render() {
     const { activeItem } = this.state;
@@ -31,33 +36,38 @@ class Nav extends Component {
             as={NavLink}
             to="/home"
             name="home"
+            value="home"
             active={activeItem === "home"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={NavLink}
             to="/new"
-            name="New Question"
-            active={activeItem === "New Question"}
+            name="questions"
+            value="questions"
+            active={activeItem === "questions"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={NavLink}
             to="/leaderboard"
-            name="Leader Board"
-            active={activeItem === "Leader Board"}
+            name="leaders"
+            value="leaders"
+            active={activeItem === "leaders"}
             onClick={this.handleItemClick}
           />
-          {!this.state.hiddenTab && (
+          {!this.props.toggleNav && (
             <Menu.Menu position="right">
               <Menu.Item>
                 <Image avatar src={this.props.image} />
               </Menu.Item>
               <Menu.Item
                 as={NavLink}
-                to="/login"
-                name="Log Out"
-                active={activeItem === "Log Out"}
+                exact
+                to="/"
+                name="logout"
+                value="logout"
+                active={activeItem === "logout"}
                 onClick={this.handleLogOutClick}
               />
             </Menu.Menu>
@@ -68,12 +78,13 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ authedUser, users, toggleNav }) {
   return {
     authedUser,
     image: Object.values(users)
       .filter(user => user.id === authedUser)
-      .map(image => image.avatarURL)[0]
+      .map(image => image.avatarURL)[0],
+    toggleNav
   };
 }
 
