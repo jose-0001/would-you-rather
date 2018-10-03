@@ -9,7 +9,11 @@ class Nav extends Component {
     hiddenTab: true
   };
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  handleItemClick = (e, { name }) =>
+    this.setState({ activeItem: name, hiddenTab: false });
+
+  handleLogOutClick = (e, { name }) =>
+    this.setState({ activeItem: name, hiddenTab: true });
 
   render() {
     const { activeItem } = this.state;
@@ -54,7 +58,7 @@ class Nav extends Component {
                 to="/login"
                 name="Log Out"
                 active={activeItem === "Log Out"}
-                onClick={this.handleItemClick}
+                onClick={this.handleLogOutClick}
               />
             </Menu.Menu>
           )}
