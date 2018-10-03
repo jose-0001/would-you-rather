@@ -5,13 +5,13 @@ import { Menu, Image, Header } from "semantic-ui-react";
 
 class Nav extends Component {
   state = {
-    activeItem: "home"
+    activeItem: "home",
+    hiddenTab: true
   };
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    console.log(this.props);
     const { activeItem } = this.state;
     return (
       <div>
@@ -44,18 +44,20 @@ class Nav extends Component {
             active={activeItem === "Leader Board"}
             onClick={this.handleItemClick}
           />
-          <Menu.Menu position="right">
-            <Menu.Item>
-              <Image avatar src={this.props.image} />
-            </Menu.Item>
-            <Menu.Item
-              as={NavLink}
-              to="/login"
-              name="Log Out"
-              active={activeItem === "Log Out"}
-              onClick={this.handleItemClick}
-            />
-          </Menu.Menu>
+          {!this.state.hiddenTab && (
+            <Menu.Menu position="right">
+              <Menu.Item>
+                <Image avatar src={this.props.image} />
+              </Menu.Item>
+              <Menu.Item
+                as={NavLink}
+                to="/login"
+                name="Log Out"
+                active={activeItem === "Log Out"}
+                onClick={this.handleItemClick}
+              />
+            </Menu.Menu>
+          )}
         </Menu>
       </div>
     );
