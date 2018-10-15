@@ -21,7 +21,6 @@ class Nav extends Component {
   };
 
   render() {
-    console.log(this.props.image);
     const { activeItem } = this.state;
     return (
       <div>
@@ -57,7 +56,7 @@ class Nav extends Component {
             active={activeItem === "leaders"}
             onClick={this.handleItemClick}
           />
-          {!this.props.toggleNav && (
+          {!this.props.toggleNav && this.props.authedUser !== null && (
             <Menu.Menu position="right">
               <Menu.Item>
                 <Image avatar src={this.props.image} />

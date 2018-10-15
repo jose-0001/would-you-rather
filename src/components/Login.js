@@ -112,7 +112,7 @@ class Login extends Component {
                 })}
               />
               <Button secondary fluid onClick={this.handleLogInClick}>
-                Sign In
+                Log In
               </Button>
             </Segment>
           </Grid.Column>
