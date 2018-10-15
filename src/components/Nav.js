@@ -21,6 +21,7 @@ class Nav extends Component {
   };
 
   render() {
+    console.log(this.props.image);
     const { activeItem } = this.state;
     return (
       <div>
@@ -81,9 +82,7 @@ class Nav extends Component {
 function mapStateToProps({ authedUser, users, toggleNav }) {
   return {
     authedUser,
-    image: Object.values(users)
-      .filter(user => user.id === authedUser)
-      .map(image => image.avatarURL)[0],
+    image: authedUser ? authedUser.avatarURL : null,
     toggleNav
   };
 }
