@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Menu, Image } from "semantic-ui-react";
 import { toggleNav, handleLogOut } from "../actions/toggleNav";
 
 class Nav extends Component {
@@ -10,7 +9,6 @@ class Nav extends Component {
   };
 
   handleItemClick = (e, { name }) => {
-    console.log(e.target);
     this.setState({ activeItem: name });
     this.props.dispatch(toggleNav(false));
   };
@@ -25,54 +23,96 @@ class Nav extends Component {
     return (
       <div>
         <style>{`
-      body > div,
-      body > div > div,
-      body > div > div > div.login-form {
-        margin: 4%;
+      .topNav {
+        list-style-type:none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+        max-height: 82px;
+      }
+
+      .topNav .left {
+        float: left;
+      }
+
+      .topNav a {
+        display: block;
+        border-radius: 5%;
+        color: white;
+        text-align: center;
+        padding: 3%;
+        text-decoration: none;
+        max-height: 79px;
+      }
+
+      .topNav a:hover:not(.active) {
+        background-color: #111;
+        max-height: 79px;
+      }
+
+      .topNav a.active{
+        background-color: #4CA0AF;
+      }
+
+      .right {
+        float: right;
+        display: inline-block;
+        max-width: 15%;
+        width: 15%;
+        padding: 5px 1% 0 1%;
+      }
+
+      .avatar {
+        width: 50%;
+        border-radius: 50%;
+      }
+
+      .logout {
+        float: right;
+        position: relative;
+        top: 15px;
+        right: 5px;
+      }
+
+      @media screen and (max-width: 600px) {
+        .topNav .right,
+        .topNav .left {
+          float: none
+        }
       }
     `}</style>
-        <Menu attached="top" tabular>
-          <Menu.Item
-            as={NavLink}
-            to="/home"
-            name="home"
-            value="home"
-            active={activeItem === "home"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            as={NavLink}
-            to="/new"
-            name="questions"
-            value="questions"
-            active={activeItem === "questions"}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            as={NavLink}
+        <div className="topNav">
+          <NavLink exact to="/home" className="navItem left" activeClassName="active">
+            Home
+          </NavLink>
+          <NavLink to="/new" className="navItem left" activeClassName="active">
+            Questions
+          </NavLink>
+          <NavLink
             to="/leaderboard"
-            name="leaders"
-            value="leaders"
-            active={activeItem === "leaders"}
-            onClick={this.handleItemClick}
-          />
-          {!this.props.toggleNav && this.props.authedUser !== null && (
-            <Menu.Menu position="right">
-              <Menu.Item>
-                <Image avatar src={this.props.image} />
-              </Menu.Item>
-              <Menu.Item
-                as={NavLink}
-                exact
-                to="/"
-                name="logout"
-                value="logout"
-                active={activeItem === "logout"}
-                onClick={this.handleLogOutClick}
-              />
-            </Menu.Menu>
-          )}
-        </Menu>
+            className="navItem left"
+            activeClassName="active"
+          >
+            Leaders
+          </NavLink>
+          {!this.props.toggleNav &&
+            this.props.authedUser !== null && (
+              <div className="right">
+                <img alt="avatar" className="avatar" src={this.props.image} />
+                <NavLink
+                  exact
+                  to="/"
+                  name="logout"
+                  value="logout"
+                  onClick={this.handleLogOutClick}
+                  className="logout"
+                >
+                  Logout
+                </NavLink>
+              </div>
+            )}
+        </div>
       </div>
     );
   }

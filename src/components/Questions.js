@@ -6,7 +6,7 @@ class Questions extends Component {
   render() {
     const { users, question } = this.props;
     return (
-      <div>
+      <div style={{margin: "4% 10%"}}>
         <Header as="h2" attached="top" block>
           {users.name} asks:
         </Header>
