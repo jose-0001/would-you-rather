@@ -1,25 +1,23 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { toggleNav, handleLogOut } from "../actions/toggleNav";
 
 class Nav extends Component {
-  state = {
-    activeItem: ""
+  handleItemClick = e => {
+    if (this.props.authedUser === null) {
+      e.preventDefault();
+      return <Redirect to="/" />;
+    } else {
+      this.props.dispatch(toggleNav(false));
+    }
   };
 
-  handleItemClick = (e, { name }) => {
-    this.setState({ activeItem: name });
-    this.props.dispatch(toggleNav(false));
-  };
-
-  handleLogOutClick = (e, { name }) => {
-    this.setState({ activeItem: name });
+  handleLogOutClick = () => {
     this.props.dispatch(handleLogOut());
   };
 
   render() {
-    const { activeItem } = this.state;
     return (
       <div>
         <style>{`
@@ -78,15 +76,27 @@ class Nav extends Component {
         <div className="topNav">
           <NavLink
             to="/home"
+            name="/home"
             className="navItem left"
             activeClassName="selected"
+            onClick={this.handleItemClick}
           >
             Home
           </NavLink>
-          <NavLink to="/questions" className="navItem left">
+          <NavLink
+            to="/questions"
+            name="/questions"
+            className="navItem left"
+            onClick={this.handleItemClick}
+          >
             Questions
           </NavLink>
-          <NavLink to="/leaderboard" className="navItem left">
+          <NavLink
+            to="/leaderboard"
+            name="/leaderboard"
+            className="navItem left"
+            onClick={this.handleItemClick}
+          >
             Leaders
           </NavLink>
           {!this.props.toggleNav &&
@@ -112,7 +122,7 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, toggleNav }) {
+function mapStateToProps({ authedUser, toggleNav }) {
   return {
     authedUser,
     image: authedUser ? authedUser.avatarURL : null,
