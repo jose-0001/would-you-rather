@@ -30,6 +30,7 @@ class Login extends Component {
     const { name, userId } = this.state;
     this.props.dispatch(handleAddUser(name, userId));
     this.setState({ name: "", userId: "" });
+    alert("User Successfully created! Select user and Log In to continue.")
   };
 
   handleNameInput = e => {

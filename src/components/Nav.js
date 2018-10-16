@@ -89,7 +89,7 @@ class Nav extends Component {
             className="navItem left"
             onClick={this.handleItemClick}
           >
-            Questions
+            New Questions
           </NavLink>
           <NavLink
             to="/leaderboard"
@@ -97,7 +97,7 @@ class Nav extends Component {
             className="navItem left"
             onClick={this.handleItemClick}
           >
-            Leaders
+            Leader Board
           </NavLink>
           {!this.props.toggleNav &&
             this.props.authedUser !== null && (

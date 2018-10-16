@@ -18,6 +18,7 @@ class App extends Component {
     this.props.dispatch(handleInitialData());
   }
   render() {
+    const { authedUser } = this.props;
     return (
       <Router>
         <Switch>
@@ -34,9 +35,15 @@ class App extends Component {
                 }}
               />
               <Route path="/login" component={Login} />
-              <Route path="/home" component={Dashboard} />
-              <Route path="/questions" component={NewQuestion} />
-              <Route path="/leaderboard" component={LeaderBoard} />
+              {authedUser === null ? (
+                <Redirect to="/login" />
+              ) : (
+                <Fragment>
+                  <Route path="/home" component={Dashboard} />
+                  <Route path="/questions" component={NewQuestion} />
+                  <Route path="/leaderboard" component={LeaderBoard} />
+                </Fragment>
+              )}
             </div>
           </Fragment>
         </Switch>
@@ -45,5 +52,11 @@ class App extends Component {
   }
 }
 
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  };
+}
+
 // to gain access to dispatch we need to connect
-export default connect()(App);
+export default connect(mapStateToProps)(App);
