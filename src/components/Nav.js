@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { toggleNav, handleLogOut } from "../actions/toggleNav";
@@ -47,20 +47,16 @@ class Nav extends Component {
       }
 
       .topNav a:hover:not(.active) {
-        background-color: #111;
-        max-height: 79px;
-      }
-
-      .topNav a.active{
         background-color: #4CA0AF;
+        max-height: 79px;
       }
 
       .right {
         float: right;
         display: inline-block;
         max-width: 15%;
-        width: 15%;
-        padding: 5px 1% 0 1%;
+        position: relative;
+        left: 2%;
       }
 
       .avatar {
@@ -70,9 +66,6 @@ class Nav extends Component {
 
       .logout {
         float: right;
-        position: relative;
-        top: 15px;
-        right: 5px;
       }
 
       @media screen and (max-width: 600px) {
@@ -83,34 +76,35 @@ class Nav extends Component {
       }
     `}</style>
         <div className="topNav">
-          <NavLink exact to="/home" className="navItem left" activeClassName="active">
+          <NavLink
+            to="/home"
+            className="navItem left"
+            activeClassName="selected"
+          >
             Home
           </NavLink>
-          <NavLink to="/new" className="navItem left" activeClassName="active">
+          <NavLink to="/questions" className="navItem left">
             Questions
           </NavLink>
-          <NavLink
-            to="/leaderboard"
-            className="navItem left"
-            activeClassName="active"
-          >
+          <NavLink to="/leaderboard" className="navItem left">
             Leaders
           </NavLink>
           {!this.props.toggleNav &&
             this.props.authedUser !== null && (
-              <div className="right">
-                <img alt="avatar" className="avatar" src={this.props.image} />
+              <Fragment>
+                <div className="right">
+                  <img alt="avatar" className="avatar" src={this.props.image} />
+                </div>
                 <NavLink
                   exact
                   to="/"
                   name="logout"
-                  value="logout"
                   onClick={this.handleLogOutClick}
                   className="logout"
                 >
                   Logout
                 </NavLink>
-              </div>
+              </Fragment>
             )}
         </div>
       </div>

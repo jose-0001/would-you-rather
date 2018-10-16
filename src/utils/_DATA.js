@@ -221,7 +221,7 @@ function formatUser(name, id) {
   return {
     name,
     id,
-    avatarURL: require("../images/products/image-aqua.png"),
+    avatarURL: require("../images/avatars/matthew.png"),
     answers: {},
     questions: []
   };

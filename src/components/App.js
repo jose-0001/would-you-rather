@@ -11,7 +11,6 @@ import Login from "./Login";
 import Dashboard from "./Dashboard";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
-import QuestionPage from "./QuestionPage";
 import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
@@ -36,7 +35,7 @@ class App extends Component {
               />
               <Route path="/login" component={Login} />
               <Route path="/home" component={Dashboard} />
-              <Route path="/new" component={NewQuestion} />
+              <Route path="/questions" component={NewQuestion} />
               <Route path="/leaderboard" component={LeaderBoard} />
             </div>
           </Fragment>
