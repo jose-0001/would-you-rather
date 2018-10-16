@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Menu, Image, Header } from "semantic-ui-react";
-import { toggleNav } from "../actions/toggleNav";
+import { Menu, Image } from "semantic-ui-react";
+import { toggleNav, handleLogOut } from "../actions/toggleNav";
 
 class Nav extends Component {
   state = {
@@ -17,7 +17,7 @@ class Nav extends Component {
 
   handleLogOutClick = (e, { name }) => {
     this.setState({ activeItem: name });
-    this.props.dispatch(toggleNav(true));
+    this.props.dispatch(handleLogOut());
   };
 
   render() {
