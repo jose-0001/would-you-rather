@@ -16,7 +16,8 @@ import {
 class Login extends Component {
   state = {
     name: "",
-    userId: ""
+    userId: "",
+    gender: ""
   };
 
   handleLogInClick = e => {
@@ -27,10 +28,11 @@ class Login extends Component {
 
   handleSignUpClick = e => {
     e.preventDefault();
-    const { name, userId } = this.state;
-    this.props.dispatch(handleAddUser(name, userId));
+    const { name, userId, gender } = this.state;
+    
+    this.props.dispatch(handleAddUser(name, userId, gender));
     this.setState({ name: "", userId: "" });
-    alert("User Successfully created! Select user and Log In to continue.")
+    alert("User Successfully created! Select user and Log In to continue.");
   };
 
   handleNameInput = e => {
@@ -43,75 +45,94 @@ class Login extends Component {
     this.setState({ userId: e.target.value });
   };
 
+  handleGenderClick = e => {
+    e.preventDefault();
+    this.setState({ gender: e.target.value });
+  };
+
   render() {
     const { authedUser, users } = this.props;
     return (
-        <div style={{margin: "4% 2%"}}>
-          <Grid
-            textAlign="center"
-            style={{ height: "100%" }}
-            verticalAlign="middle"
-          >
-            <Grid.Column style={{ maxWidth: 450 }}>
-              <Header as="h2" icon textAlign="center">
-                <Icon name="users" circular />
-                <Header.Content>
-                  {authedUser === null
-                    ? "Hey, Would You Rather..."
-                    : `Hey ${authedUser.name}
+      <div style={{ margin: "4% 2%" }}>
+        <Grid
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="middle"
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" icon textAlign="center">
+              <Icon name="users" circular />
+              <Header.Content>
+                {authedUser === null
+                  ? "Hey, Would You Rather..."
+                  : `Hey ${authedUser.name}
             `}
-                </Header.Content>
-              </Header>
-              <Form size="large">
-                <Segment stacked>
-                  <Form.Input
-                    fluid
-                    icon="user"
-                    iconPosition="left"
-                    placeholder="Full Name"
-                    onChange={this.handleNameInput}
-                    value={this.state.name}
-                  />
-                  <Form.Input
-                    fluid
-                    icon="user"
-                    iconPosition="left"
-                    placeholder="User Name"
-                    onChange={this.handleUserIdInput}
-                    value={this.state.userId}
-                  />
-                  <Button primary fluid onClick={this.handleSignUpClick}>
-                    Sign Up
-                  </Button>
-                </Segment>
-              </Form>
-              <Segment>
-                <Dropdown
-                  style={{ marginBottom: 8 }}
-                  placeholder="Select User"
+              </Header.Content>
+            </Header>
+            <Form size="large">
+              <Segment stacked>
+                <Form.Input
                   fluid
-                  selection
-                  options={users.map(user => {
-                    return {
-                      text: user.name,
-                      value: user.id,
-                      image: {
-                        avatar: true,
-                        src: user.avatarURL
-                      },
-                      onClick: () => {
-                        this.props.dispatch(setAuthedUser(user));
-                      }
-                    };
-                  })}
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Full Name"
+                  onChange={this.handleNameInput}
+                  value={this.state.name}
                 />
-                <Button secondary fluid onClick={this.handleLogInClick}>
-                  Log In
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="User Name"
+                  onChange={this.handleUserIdInput}
+                  value={this.state.userId}
+                />
+                <Button.Group>
+                  <Button onClick={this.handleGenderClick} value="male">
+                    Male
+                  </Button>
+                  <Button.Or />
+                  <Button onClick={this.handleGenderClick} value="female">
+                    Female
+                  </Button>
+                </Button.Group>
+                <Button
+                  primary
+                  fluid
+                  onClick={this.handleSignUpClick}
+                  style={{ marginTop: "1%" }}
+                >
+                  Sign Up
                 </Button>
               </Segment>
-            </Grid.Column>
-          </Grid>
-        </div>
+            </Form>
+            <Segment>
+              <Dropdown
+                style={{ marginBottom: 8 }}
+                placeholder="Select User"
+                fluid
+                selection
+                options={users.map(user => {
+                  return {
+                    text: user.name,
+                    value: user.id,
+                    image: {
+                      avatar: true,
+                      src: user.avatarURL
+                    },
+                    onClick: () => {
+                      this.props.dispatch(setAuthedUser(user));
+                    }
+                  };
+                })}
+              />
+              <Button secondary fluid onClick={this.handleLogInClick}>
+                Log In
+              </Button>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

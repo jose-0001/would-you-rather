@@ -217,19 +217,21 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
   });
 }
 
-function formatUser(name, id) {
+function formatUser(name, id, gender) {
   return {
     name,
     id,
-    avatarURL: require("../images/avatars/matthew.png"),
+    avatarURL: require(gender === "male"
+      ? "../images/avatars/matthew.png"
+      : "../images/avatars/veronika.jpg"),
     answers: {},
     questions: []
   };
 }
 
-export function saveUser(name, id) {
+export function saveUser(name, id, gender) {
   return new Promise((res, rej) => {
-    const formattedUser = formatUser(name, id);
+    const formattedUser = formatUser(name, id, gender);
 
     setTimeout(() => {
       users = {
@@ -237,7 +239,6 @@ export function saveUser(name, id) {
         [id]: formattedUser
       };
       res(formattedUser);
-      console.log(users);
     }, 1000);
   });
 }

@@ -17,11 +17,11 @@ export function addUser(user) {
   };
 }
 
-export function handleAddUser(name, id) {
+export function handleAddUser(name, id, gender) {
   return dispatch => {
     dispatch(showLoading());
 
-    return saveUser(name, id)
+    return saveUser(name, id, gender)
       .then(user => dispatch(addUser(user)))
       .then(() => dispatch(hideLoading()));
   };
