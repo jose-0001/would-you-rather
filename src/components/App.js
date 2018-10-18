@@ -35,13 +35,15 @@ class App extends Component {
                 }}
               />
               <Route path="/login" component={Login} />
-
+              {authedUser === null ? (
+                <Redirect to="/login" />
+              ) : (
                 <Fragment>
                   <Route path="/home" component={Dashboard} />
                   <Route path="/questions" component={NewQuestion} />
                   <Route path="/leaderboard" component={LeaderBoard} />
                 </Fragment>
-
+              )}
             </div>
           </Fragment>
         </Switch>
