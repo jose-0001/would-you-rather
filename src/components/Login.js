@@ -21,36 +21,29 @@ class Login extends Component {
   };
 
   handleLogInClick = e => {
+    const { history, dispatch } = this.props;
     e.preventDefault();
-    this.props.history.push("/home");
-    this.props.dispatch(toggleNav(false));
+    history.push("/home");
+    dispatch(toggleNav(false));
   };
 
   handleSignUpClick = e => {
     e.preventDefault();
     const { name, userId, gender } = this.state;
-    
-    this.props.dispatch(handleAddUser(name, userId, gender));
+    const { dispatch } = this.props;
+    dispatch(handleAddUser(name, userId, gender));
     this.setState({ name: "", userId: "" });
     alert("User Successfully created! Select user and Log In to continue.");
   };
 
-  handleNameInput = e => {
+  handleInput = e => {
+    const { name, value } = e.target;
     e.preventDefault();
-    this.setState({ name: e.target.value });
-  };
-
-  handleUserIdInput = e => {
-    e.preventDefault();
-    this.setState({ userId: e.target.value });
-  };
-
-  handleGenderClick = e => {
-    e.preventDefault();
-    this.setState({ gender: e.target.value });
+    this.setState({ [name]: value });
   };
 
   render() {
+    const { name, userId } = this.state;
     const { authedUser, users } = this.props;
     return (
       <div style={{ margin: "4% 2%" }}>
@@ -76,23 +69,29 @@ class Login extends Component {
                   icon="user"
                   iconPosition="left"
                   placeholder="Full Name"
-                  onChange={this.handleNameInput}
-                  value={this.state.name}
+                  onChange={this.handleInput}
+                  name="name"
+                  value={name}
                 />
                 <Form.Input
                   fluid
                   icon="user"
                   iconPosition="left"
                   placeholder="User Name"
-                  onChange={this.handleUserIdInput}
-                  value={this.state.userId}
+                  onChange={this.handleInput}
+                  name="userId"
+                  value={userId}
                 />
                 <Button.Group>
-                  <Button onClick={this.handleGenderClick} value="male">
+                  <Button onClick={this.handleInput} name="male" value="male">
                     Male
                   </Button>
                   <Button.Or />
-                  <Button onClick={this.handleGenderClick} value="female">
+                  <Button
+                    onClick={this.handleInput}
+                    name="female"
+                    value="female"
+                  >
                     Female
                   </Button>
                 </Button.Group>

@@ -5,19 +5,22 @@ import { toggleNav, handleLogOut } from "../actions/toggleNav";
 
 class Nav extends Component {
   handleItemClick = e => {
-    if (this.props.authedUser === null) {
+    const { authedUser, dispatch } = this.props;
+    if (authedUser === null) {
       e.preventDefault();
       return <Redirect to="/" />;
     } else {
-      this.props.dispatch(toggleNav(false));
+      dispatch(toggleNav(false));
     }
   };
 
   handleLogOutClick = () => {
-    this.props.dispatch(handleLogOut());
+    const { dispatch } = this.props;
+    dispatch(handleLogOut());
   };
 
   render() {
+    const { toggleNav, authedUser, image } = this.props;
     return (
       <div>
         <style>{`
@@ -99,11 +102,11 @@ class Nav extends Component {
           >
             Leader Board
           </NavLink>
-          {!this.props.toggleNav &&
-            this.props.authedUser !== null && (
+          {!toggleNav &&
+            authedUser !== null && (
               <Fragment>
                 <div className="right">
-                  <img alt="avatar" className="avatar" src={this.props.image} />
+                  <img alt="avatar" className="avatar" src={image} />
                 </div>
                 <NavLink
                   exact
