@@ -33,7 +33,7 @@ class Login extends Component {
     const { dispatch } = this.props;
     dispatch(handleAddUser(name, userId, gender));
     this.setState({ name: "", userId: "" });
-    alert("User Successfully created! Select user and Log In to continue.");
+    console.log(this.state);
   };
 
   handleInput = e => {
@@ -54,7 +54,21 @@ class Login extends Component {
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h2" icon textAlign="center">
-              <Icon name="users" circular />
+              {authedUser !== null ? (
+                <div>
+                  <img
+                    src={authedUser.avatarURL}
+                    alt="avatar"
+                    style={{
+                      borderRadius: "50%",
+                      width: "50%"
+                    }}
+                  />
+                </div>
+              ) : (
+                <Icon name="users" circular />
+              )}
+
               <Header.Content>
                 {authedUser === null
                   ? "Hey, Would You Rather..."
@@ -83,13 +97,13 @@ class Login extends Component {
                   value={userId}
                 />
                 <Button.Group>
-                  <Button onClick={this.handleInput} name="male" value="male">
+                  <Button onClick={this.handleInput} name="gender" value="male">
                     Male
                   </Button>
                   <Button.Or />
                   <Button
                     onClick={this.handleInput}
-                    name="female"
+                    name="gender"
                     value="female"
                   >
                     Female

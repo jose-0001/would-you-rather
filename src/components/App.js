@@ -15,7 +15,7 @@ import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialData());
+    this.props.handleInitialData();
   }
   render() {
     const { authedUser } = this.props;
@@ -59,4 +59,7 @@ function mapStateToProps({ authedUser }) {
 }
 
 // to gain access to dispatch we need to connect
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps, 
+  { handleInitialData }
+)(App);
