@@ -12,6 +12,7 @@ import Dashboard from "./Dashboard";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
+import ViewPoll from "./ViewPoll";
 
 class App extends Component {
   componentDidMount() {
@@ -35,15 +36,16 @@ class App extends Component {
                 }}
               />
               <Route path="/login" component={Login} />
-              {authedUser === null ? (
-                <Redirect to="/login" />
-              ) : (
-                <Fragment>
-                  <Route path="/home" component={Dashboard} />
-                  <Route path="/questions" component={NewQuestion} />
-                  <Route path="/leaderboard" component={LeaderBoard} />
-                </Fragment>
-              )}
+              {/* {authedUser === null ? ( */}
+              {/* <Redirect to="/login" /> */}
+              {/* ) : ( */}
+              <Fragment>
+                <Route path="/home" component={Dashboard} />
+                <Route path="/new" component={NewQuestion} />
+                <Route path="/leaderboard" component={LeaderBoard} />
+                <Route path="/view" component={ViewPoll} />
+              </Fragment>
+              {/* )} */}
             </div>
           </Fragment>
         </Switch>
@@ -60,6 +62,6 @@ function mapStateToProps({ authedUser }) {
 
 // to gain access to dispatch we need to connect
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   { handleInitialData }
 )(App);

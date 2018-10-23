@@ -87,8 +87,8 @@ class Nav extends Component {
             Home
           </NavLink>
           <NavLink
-            to="/questions"
-            name="/questions"
+            to="/new"
+            name="/new"
             className="navItem left"
             onClick={this.handleItemClick}
           >

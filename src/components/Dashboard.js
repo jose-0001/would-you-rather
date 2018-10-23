@@ -4,10 +4,11 @@ import Questions from "./Questions";
 
 class Dashboard extends Component {
   render() {
+    const { history } = this.props;
     return (
-      <div style={{margin: "3%"}}>
+      <div style={{ margin: "3%" }}>
         {this.props.questionIds.map(id => (
-          <Questions id={id} key={id} />
+          <Questions id={id} key={id} history={history} />
         ))}
       </div>
     );

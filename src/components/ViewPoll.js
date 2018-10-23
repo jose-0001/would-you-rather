@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class QuestionPage extends Component {
+class ViewPoll extends Component {
   render() {
     return <div>Questions go here...</div>;
   }
 }
 
-export default connect()(QuestionPage);
+export default connect()(ViewPoll);

@@ -33,7 +33,7 @@ class Login extends Component {
     const { dispatch } = this.props;
     dispatch(handleAddUser(name, userId, gender));
     this.setState({ name: "", userId: "" });
-    console.log(this.state);
+    alert("User Successfully created! Select user and Log In to continue.");
   };
 
   handleInput = e => {

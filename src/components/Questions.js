@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { Image, Segment, Divider, Header, Button } from "semantic-ui-react";
 
 class Questions extends Component {
+  handleViewPoll = e => {
+    e.preventDefault();
+    const { history } = this.props;
+    history.push("/view");
+  };
   render() {
     const { users, question } = this.props;
     return (
@@ -25,7 +30,13 @@ class Questions extends Component {
             <Header as="h3">{question.optionOne.text}</Header>
             <Divider horizontal>Or</Divider>
             <Header as="h3">{question.optionTwo.text}</Header>
-            <Button fluid inverted color="green" style={{ marginTop: "8%" }}>
+            <Button
+              fluid
+              inverted
+              color="green"
+              style={{ marginTop: "8%" }}
+              onClick={this.handleViewPoll}
+            >
               View Poll
             </Button>
           </Segment>
