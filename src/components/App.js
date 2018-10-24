@@ -24,9 +24,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Fragment>
-            <div>
-              <Nav />
-            </div>
+            {authedUser !== null ? <Nav /> : null}
             <div>
               <Route
                 exact
