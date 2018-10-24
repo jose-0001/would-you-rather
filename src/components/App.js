@@ -36,16 +36,10 @@ class App extends Component {
                 }}
               />
               <Route path="/login" component={Login} />
-              {/* {authedUser === null ? ( */}
-              {/* <Redirect to="/login" /> */}
-              {/* ) : ( */}
-              <Fragment>
-                <Route path="/home" component={Dashboard} />
-                <Route path="/new" component={NewQuestion} />
-                <Route path="/leaderboard" component={LeaderBoard} />
-                <Route path="/view" component={ViewPoll} />
-              </Fragment>
-              {/* )} */}
+              <Route path="/home" component={Dashboard} />
+              <Route path="/new" component={NewQuestion} />
+              <Route path="/leaderboard" component={LeaderBoard} />
+              <Route path="/view" component={ViewPoll} />
             </div>
           </Fragment>
         </Switch>

@@ -5,8 +5,8 @@ import { Image, Segment, Divider, Header, Button } from "semantic-ui-react";
 class Questions extends Component {
   handleViewPoll = e => {
     e.preventDefault();
-    const { history } = this.props;
-    history.push("/view");
+    // const { history } = this.props;
+    // history.push("/view");
   };
   render() {
     const { users, question } = this.props;

@@ -1,8 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
   render() {
+    const { authedUser } = this.props;
+    if (authedUser === null) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <div>
         <style>
@@ -83,4 +89,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion);
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  };
+}
+
+export default connect(mapStateToProps)(NewQuestion);
