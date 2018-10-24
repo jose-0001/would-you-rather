@@ -21,10 +21,14 @@ class Login extends Component {
   };
 
   handleLogInClick = e => {
-    const { history, dispatch } = this.props;
+    const { history, dispatch, authedUser } = this.props;
     e.preventDefault();
-    history.push("/home");
-    dispatch(toggleNav(false));
+    if (authedUser === null) {
+      alert("Select user to log in with.");
+    } else {
+      history.push("/home");
+      dispatch(toggleNav(false));
+    }
   };
 
   handleSignUpClick = e => {
