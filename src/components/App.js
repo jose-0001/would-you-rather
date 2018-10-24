@@ -22,25 +22,24 @@ class App extends Component {
     const { authedUser } = this.props;
     return (
       <Router>
-        <Switch>
-          <Fragment>
-            {authedUser !== null ? <Nav /> : null}
-            <div>
-              <Route
-                exact
-                path="/"
-                render={() => {
-                  return <Redirect to="/login" />;
-                }}
-              />
-              <Route path="/login" component={Login} />
-              <Route path="/home" component={Dashboard} />
-              <Route path="/new" component={NewQuestion} />
-              <Route path="/leaderboard" component={LeaderBoard} />
-              <Route path="/view" component={ViewPoll} />
-            </div>
-          </Fragment>
-        </Switch>
+        <Fragment>
+          {authedUser !== null ? <Nav /> : null}
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                return <Redirect to="/login" />;
+              }}
+            />
+            <Route path="/login" component={Login} />
+            <Route path="/home" component={Dashboard} />
+            <Route path="/new" component={NewQuestion} />
+            <Route path="/leaderboard" component={LeaderBoard} />
+            <Route path="/view" component={ViewPoll} />
+            <Route render={() => <Redirect to="/" />} />
+          </Switch>
+        </Fragment>
       </Router>
     );
   }
