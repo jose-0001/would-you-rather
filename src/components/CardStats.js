@@ -2,7 +2,7 @@ import React from "react";
 import { Card, Image, Label } from "semantic-ui-react";
 
 const CardStats = ({ name, avatarURL, answeredQs, createdQs }) => (
-  <Card style={{ textAlign: "right", margin: "2% auto" }}>
+  <Card style={{ textAlign: "right", margin: "2% 3%", float: "left" }}>
     <Image src={avatarURL} />
     <Card.Content>
       <Card.Header>{name}</Card.Header>
