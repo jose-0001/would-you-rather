@@ -54,19 +54,17 @@ class Nav extends Component {
 
       .right {
         float: right;
-        display: inline-block;
-        max-width: 15%;
-        position: relative;
-        left: 2%;
+        max-width: 50%;
       }
 
       .avatar {
-        width: 50%;
+        float: right;
+        width: 15%;
         border-radius: 50%;
       }
 
       .logout {
-        float: right;
+        float: left;
       }
 
       @media screen and (max-width: 600px) {
@@ -106,6 +104,17 @@ class Nav extends Component {
             authedUser !== null && (
               <Fragment>
                 <div className="right">
+                  <h1
+                    style={{
+                      float: "right",
+                      position: "relative",
+                      top: "20px",
+                      color: "#f7f7f7",
+                      margin: "0 15px"
+                    }}
+                  >
+                    {authedUser.name}
+                  </h1>
                   <img alt="avatar" className="avatar" src={image} />
                 </div>
                 <NavLink

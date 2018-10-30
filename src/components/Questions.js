@@ -1,57 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Image, Segment, Divider, Header, Button } from "semantic-ui-react";
+import Polls from "./Polls";
 
 class Questions extends Component {
-  handleViewPoll = e => {
-    e.preventDefault();
-    // const { history } = this.props;
-    // history.push("/view");
-  };
   render() {
-    const { users, question } = this.props;
-    return (
-      <div style={{ margin: "4% 10%" }}>
-        <Header as="h2" attached="top" block>
-          {users.name} asks:
-        </Header>
-        <Segment.Group horizontal style={{ marginTop: 0 }}>
-          <Segment attached>
-            <Image
-              size="medium"
-              circular
-              src={users.avatarURL}
-              style={{ margin: "8%" }}
-            />
-            <Header as="h2">{users.id}</Header>
-          </Segment>
-          <Segment attached>
-            <Header as="h1">Would you rather...</Header>
-            <Header as="h3">{question.optionOne.text}</Header>
-            <Divider horizontal>Or</Divider>
-            <Header as="h3">{question.optionTwo.text}</Header>
-            <Button
-              fluid
-              inverted
-              color="green"
-              style={{ marginTop: "8%" }}
-              onClick={this.handleViewPoll}
-            >
-              View Poll
-            </Button>
-          </Segment>
-        </Segment.Group>
-      </div>
-    );
+    const { question, users } = this.props;
+    console.log(users[question.author].answers);
+    // console.log(question.author);
+    return <div>{}</div>;
   }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
+  const answeredByAuthedUser = authedUser.answers;
   return {
     question,
     authedUser,
-    users: users[question.author]
+    users,
+    answeredByAuthedUser
   };
 }
 
