@@ -30,7 +30,7 @@ class Nav extends Component {
         padding: 0;
         overflow: hidden;
         background-color: #333;
-        max-height: 82px;
+        max-height: 115px;
       }
 
       .topNav .left {
@@ -58,8 +58,9 @@ class Nav extends Component {
       }
 
       .avatar {
+        margin-top: 5px;
         float: right;
-        width: 15%;
+        width: 11%;
         border-radius: 50%;
       }
 
