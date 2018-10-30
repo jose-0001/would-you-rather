@@ -1,24 +1,42 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Polls from "./Polls";
+import Qs from "./Qs";
+import { Divider } from "semantic-ui-react";
 
 class Questions extends Component {
   render() {
-    const { question, users } = this.props;
-    console.log(users[question.author].answers);
-    // console.log(question.author);
-    return <div>{}</div>;
+    const { users, optionOne, optionTwo, authedUser, toggleTab } = this.props;
+
+    const answeredByAuthedUser =
+      optionOne.votes.includes(authedUser.id) ||
+      optionTwo.votes.includes(authedUser.id)
+        ? true
+        : false;
+
+    return (
+      <Fragment>
+        <div>
+          {!answeredByAuthedUser && toggleTab === false ? (
+            <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />
+          ) : null}
+        </div>
+        <div>
+          {answeredByAuthedUser && toggleTab === true ? (
+            <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />
+          ) : null}
+        </div>
+      </Fragment>
+    );
   }
 }
 
 function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
-  const answeredByAuthedUser = authedUser.answers;
   return {
-    question,
     authedUser,
-    users,
-    answeredByAuthedUser
+    optionOne: question.optionOne,
+    optionTwo: question.optionTwo,
+    users: users[question.author]
   };
 }
 
