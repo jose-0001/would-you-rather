@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import Qs from "./Qs";
-import { Divider } from "semantic-ui-react";
 
 class Questions extends Component {
   render() {

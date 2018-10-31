@@ -1,7 +1,8 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 
-const Qs = ({ users, optionOne, optionTwo }) => {
+const Qs = ({ users, optionOne, optionTwo, history }) => {
   return (
     <div style={{ margin: "4% 10%", clear: "both" }}>
       <Header as="h2" attached="top" block>
@@ -27,7 +28,7 @@ const Qs = ({ users, optionOne, optionTwo }) => {
             inverted
             color="green"
             style={{ marginTop: "8%" }}
-            onClick={this.handleViewPoll}
+            onClick={() => history.push("/viewpoll")}
           >
             View Poll
           </Button>
@@ -37,4 +38,4 @@ const Qs = ({ users, optionOne, optionTwo }) => {
   );
 };
 
-export default Qs;
+export default withRouter(Qs);

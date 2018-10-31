@@ -36,7 +36,7 @@ class App extends Component {
             <Route path="/home" component={Dashboard} />
             <Route path="/new" component={NewQuestion} />
             <Route path="/leaderboard" component={LeaderBoard} />
-            <Route path="/view" component={ViewPoll} />
+            <Route path="/viewpoll" component={ViewPoll} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </Fragment>
