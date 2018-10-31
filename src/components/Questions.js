@@ -12,20 +12,13 @@ class Questions extends Component {
         ? true
         : false;
 
-    return (
-      <Fragment>
-        <div>
-          {!answeredByAuthedUser && toggleTab === false ? (
-            <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />
-          ) : null}
-        </div>
-        <div>
-          {answeredByAuthedUser && toggleTab === true ? (
-            <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />
-          ) : null}
-        </div>
-      </Fragment>
-    );
+    if (!answeredByAuthedUser && toggleTab === false) {
+      return <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />;
+    } else if (answeredByAuthedUser && toggleTab === true) {
+      return <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />;
+    } else {
+      return null;
+    }
   }
 }
 
