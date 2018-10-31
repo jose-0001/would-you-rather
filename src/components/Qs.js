@@ -70,15 +70,27 @@ class Qs extends Component {
                 }}
               />
             )}
-            <Button
-              fluid
-              inverted
-              color="green"
-              style={{ marginTop: "8%" }}
-              onClick={() => history.push(location)}
-            >
-              View Poll
-            </Button>
+            {history.location.pathname === "/viewpoll" ? (
+              <Button
+                fluid
+                inverted
+                color="green"
+                style={{ marginTop: "8%" }}
+                onClick={() => history.push(location)}
+              >
+                Submit answer
+              </Button>
+            ) : (
+              <Button
+                fluid
+                inverted
+                color="green"
+                style={{ marginTop: "8%" }}
+                onClick={() => history.push(location)}
+              >
+                View Poll
+              </Button>
+            )}
           </Segment>
         </Segment.Group>
       </div>
