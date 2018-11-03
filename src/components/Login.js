@@ -14,12 +14,6 @@ import {
 } from "semantic-ui-react";
 
 class Login extends Component {
-  state = {
-    name: "",
-    userId: "",
-    gender: ""
-  };
-
   handleLogInClick = e => {
     const { history, dispatch, authedUser } = this.props;
     e.preventDefault();
@@ -31,23 +25,7 @@ class Login extends Component {
     }
   };
 
-  handleSignUpClick = e => {
-    e.preventDefault();
-    const { name, userId, gender } = this.state;
-    const { dispatch } = this.props;
-    dispatch(handleAddUser(name, userId, gender));
-    this.setState({ name: "", userId: "" });
-    alert("User Successfully created! Select user and Log In to continue.");
-  };
-
-  handleInput = e => {
-    const { name, value } = e.target;
-    e.preventDefault();
-    this.setState({ [name]: value });
-  };
-
   render() {
-    const { name, userId } = this.state;
     const { authedUser, users } = this.props;
     return (
       <div style={{ margin: "4% 2%" }}>
@@ -80,49 +58,6 @@ class Login extends Component {
             `}
               </Header.Content>
             </Header>
-            <Form size="large">
-              <Segment stacked>
-                <Form.Input
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  placeholder="Full Name"
-                  onChange={this.handleInput}
-                  name="name"
-                  value={name}
-                />
-                <Form.Input
-                  fluid
-                  icon="user"
-                  iconPosition="left"
-                  placeholder="User Name"
-                  onChange={this.handleInput}
-                  name="userId"
-                  value={userId}
-                />
-                <Button.Group>
-                  <Button onClick={this.handleInput} name="gender" value="male">
-                    Male
-                  </Button>
-                  <Button.Or />
-                  <Button
-                    onClick={this.handleInput}
-                    name="gender"
-                    value="female"
-                  >
-                    Female
-                  </Button>
-                </Button.Group>
-                <Button
-                  primary
-                  fluid
-                  onClick={this.handleSignUpClick}
-                  style={{ marginTop: "1%" }}
-                >
-                  Sign Up
-                </Button>
-              </Segment>
-            </Form>
             <Segment>
               <Dropdown
                 style={{ marginBottom: 8 }}

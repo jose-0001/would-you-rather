@@ -18,6 +18,11 @@ class Qs extends Component {
     this.setState({ selection: answer });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state.selection);
+  };
+
   render() {
     const { users, optionOne, optionTwo, history } = this.props;
     const location = {
@@ -48,7 +53,6 @@ class Qs extends Component {
             <Header as="h3">{optionOne.text}</Header>
             {history.location.pathname === "/viewpoll" && (
               <Form.Field
-                style={{ position: "relative", top: "-36px", left: "120px" }}
                 control="input"
                 type="radio"
                 name="optionOne"
@@ -61,7 +65,6 @@ class Qs extends Component {
             <Header as="h3">{optionTwo.text}</Header>
             {history.location.pathname === "/viewpoll" && (
               <Form.Field
-                style={{ position: "relative", top: "-36px", left: "120px" }}
                 control="input"
                 type="radio"
                 name="optionOne"
@@ -76,7 +79,7 @@ class Qs extends Component {
                 inverted
                 color="green"
                 style={{ marginTop: "8%" }}
-                onClick={() => history.push(location)}
+                onClick={this.handleSubmit}
               >
                 Submit answer
               </Button>
