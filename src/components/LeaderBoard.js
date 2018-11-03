@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import LeaderStats from "./LeaderStats";
+import CardStats from "./CardStats";
 
 class LeaderBoard extends Component {
   render() {
@@ -14,7 +14,7 @@ class LeaderBoard extends Component {
     return (
       <div>
         {users.map(user => (
-          <LeaderStats
+          <CardStats
             key={user.id}
             avatarURL={user.avatarURL}
             name={user.name}
