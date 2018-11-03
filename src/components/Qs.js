@@ -13,17 +13,17 @@ import {
 
 class Qs extends Component {
   state = {
-    selection: ""
+    option: ""
   };
 
-  handleSelection = answer => {
-    this.setState({ selection: answer });
+  handleSelection = e => {
+    this.setState({ option: e.target.value });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     // const { dispatch } = this.props;
-    console.log(this.props);
+    console.log(this.state);
     // dispatch(handleSaveAnswer())
   };
 
@@ -56,25 +56,21 @@ class Qs extends Component {
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
             {history.location.pathname === "/viewpoll" && (
-              <Form.Field
-                control="input"
+              <input
                 type="radio"
-                name="optionOne"
-                onClick={() => {
-                  this.handleSelection(optionOne.text);
-                }}
+                name="option"
+                value="optionOne"
+                onClick={this.handleSelection}
               />
             )}
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
             {history.location.pathname === "/viewpoll" && (
-              <Form.Field
-                control="input"
+              <input
                 type="radio"
-                name="optionOne"
-                onClick={() => {
-                  this.handleSelection(optionTwo.text);
-                }}
+                name="option"
+                value="optionTwo"
+                onClick={this.handleSelection}
               />
             )}
             {history.location.pathname === "/viewpoll" ? (
