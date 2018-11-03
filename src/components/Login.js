@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
-import { handleAddUser } from "../actions/users";
 import { toggleNav } from "../actions/toggleNav";
 import {
   Grid,
@@ -10,7 +9,6 @@ import {
   Header,
   Icon,
   Segment,
-  Form
 } from "semantic-ui-react";
 
 class Login extends Component {

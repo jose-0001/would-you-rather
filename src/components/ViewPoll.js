@@ -19,10 +19,6 @@ class ViewPoll extends Component {
   }
 }
 
-function mapStateToProps({ authedUser }) {
-  return {
-    authedUser
-  };
-}
-
-export default connect(mapStateToProps)(ViewPoll);
+export default connect(({ authedUser }) => {
+  return { authedUser };
+})(ViewPoll);

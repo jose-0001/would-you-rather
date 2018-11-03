@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import { handleSaveAnswer } from "../actions/answer";
 import {
   Header,
   Segment,
@@ -20,7 +22,9 @@ class Qs extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.selection);
+    // const { dispatch } = this.props;
+    console.log(this.props);
+    // dispatch(handleSaveAnswer())
   };
 
   render() {
@@ -101,4 +105,6 @@ class Qs extends Component {
   }
 }
 
-export default withRouter(Qs);
+export default connect(({ authedUser }) => {
+  return { authedUser };
+})(withRouter(Qs));
