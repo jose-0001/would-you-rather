@@ -13,18 +13,22 @@ import {
 
 class Qs extends Component {
   state = {
-    option: ""
+    answer: ""
   };
 
-  handleSelection = e => {
-    this.setState({ option: e.target.value });
+  handleSelection = (e, qid) => {
+    this.setState({
+      answer: e.target.value,
+      qid
+    });
   };
 
   handleSubmit = e => {
     e.preventDefault();
-    // const { dispatch } = this.props;
+    // const { dispatch, authedUser, } = this.props;
+    // const { answer } = this.state;
     console.log(this.state);
-    // dispatch(handleSaveAnswer())
+    // dispatch(handleSaveAnswer(authedUser, "qid", answer))
   };
 
   render() {
@@ -60,7 +64,9 @@ class Qs extends Component {
                 type="radio"
                 name="option"
                 value="optionOne"
-                onClick={this.handleSelection}
+                onClick={e => {
+                  this.handleSelection(e, users.questions[0]);
+                }}
               />
             )}
             <Divider horizontal>Or</Divider>
@@ -70,7 +76,9 @@ class Qs extends Component {
                 type="radio"
                 name="option"
                 value="optionTwo"
-                onClick={this.handleSelection}
+                onClick={e => {
+                  this.handleSelection(e, users.questions[1]);
+                }}
               />
             )}
             {history.location.pathname === "/viewpoll" ? (
