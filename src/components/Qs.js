@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { handleSaveAnswer } from "../actions/answer";
 import {
   Header,
   Segment,
   Image,
   Divider,
   Button,
-  Form
 } from "semantic-ui-react";
 
 class Qs extends Component {

@@ -30,7 +30,7 @@ class Nav extends Component {
         padding: 0;
         overflow: hidden;
         background-color: #333;
-        max-height: 115px;
+        max-height: 170px;
       }
 
       .topNav .left {
@@ -54,7 +54,8 @@ class Nav extends Component {
 
       .right {
         float: right;
-        max-width: 50%;
+        max-width: 40%;
+        margin-top: 10px;
       }
 
       .avatar {
@@ -103,6 +104,19 @@ class Nav extends Component {
           </NavLink>
           {!toggleNav &&
             authedUser !== null && (
+              <NavLink
+                exact
+                to="/"
+                name="logout"
+                onClick={this.handleLogOutClick}
+                className="navItem left"
+              >
+                Logout
+              </NavLink>
+            )}
+
+          {!toggleNav &&
+            authedUser !== null && (
               <Fragment>
                 <div className="right">
                   <h1
@@ -118,15 +132,6 @@ class Nav extends Component {
                   </h1>
                   <img alt="avatar" className="avatar" src={image} />
                 </div>
-                <NavLink
-                  exact
-                  to="/"
-                  name="logout"
-                  onClick={this.handleLogOutClick}
-                  className="logout"
-                >
-                  Logout
-                </NavLink>
               </Fragment>
             )}
         </div>
