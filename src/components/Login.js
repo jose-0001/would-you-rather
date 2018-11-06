@@ -8,7 +8,7 @@ import {
   Button,
   Header,
   Icon,
-  Segment,
+  Segment
 } from "semantic-ui-react";
 
 class Login extends Component {

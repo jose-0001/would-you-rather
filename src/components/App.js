@@ -6,6 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { connect } from "react-redux";
+import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
@@ -24,6 +25,9 @@ class App extends Component {
       <Router>
         <Fragment>
           {authedUser !== null && <Nav />}
+            <header>
+              <LoadingBar />
+            </header>
           <Switch>
             <Route
               exact

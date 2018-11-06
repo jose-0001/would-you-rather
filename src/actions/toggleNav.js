@@ -1,4 +1,4 @@
-import { showLoading, hideLoading } from "react-redux-loading";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 import { setAuthedUser } from "./authedUser";
 import { TOGGLE_NAV } from "./actionTypes";
 
