@@ -48,8 +48,8 @@ export function handleAddVote(info) {
 
     const questionPayload = {
       authedUser: authUser,
-      qid: info.id,
-      answer: info.option
+      qid: info.qid,
+      answer: info.answer
     };
 
     dispatch(showLoading());

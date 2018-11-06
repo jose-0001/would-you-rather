@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  Header,
-  Segment,
-  Image,
-  Divider,
-  Button,
-} from "semantic-ui-react";
+import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
+import { handleAddVote } from "../actions/questions";
 
 class Qs extends Component {
   state = {
@@ -23,10 +18,11 @@ class Qs extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    // const { dispatch, authedUser, } = this.props;
-    // const { answer } = this.state;
+    const { qid, answer } = this.state;
+    const { dispatch, history } = this.props;
     console.log(this.state);
-    // dispatch(handleSaveAnswer(authedUser, "qid", answer))
+    dispatch(handleAddVote({ qid, answer }));
+    history.push("/home");
   };
 
   render() {
