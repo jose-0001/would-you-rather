@@ -3,7 +3,6 @@ import { getInitialData } from "../utils/_DATA";
 import { receiveUsers } from "../actions/users";
 import { receiveQuestions } from "../actions/questions";
 import { setAuthedUser } from "../actions/authedUser";
-import { toggleNav } from "./toggleNav";
 
 const AUTHED_ID = null;
 
@@ -14,8 +13,15 @@ export function handleInitialData() {
       dispatch(receiveUsers(users));
       dispatch(receiveQuestions(questions));
       dispatch(setAuthedUser(AUTHED_ID));
-      dispatch(toggleNav(true));
       dispatch(hideLoading());
     });
+  };
+}
+
+export function handleLogOut() {
+  return dispatch => {
+    dispatch(showLoading());
+    dispatch(setAuthedUser(AUTHED_ID));
+    dispatch(hideLoading());
   };
 }

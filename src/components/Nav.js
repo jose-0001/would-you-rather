@@ -1,16 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
-import { toggleNav, handleLogOut } from "../actions/toggleNav";
+import { handleLogOut } from "../actions/shared";
 
 class Nav extends Component {
   handleItemClick = e => {
-    const { authedUser, dispatch } = this.props;
+    const { authedUser } = this.props;
     if (authedUser === null) {
       e.preventDefault();
       return <Redirect to="/" />;
-    } else {
-      dispatch(toggleNav(false));
     }
   };
 
@@ -20,7 +18,7 @@ class Nav extends Component {
   };
 
   render() {
-    const { toggleNav, authedUser, image } = this.props;
+    const { authedUser, image } = this.props;
     return (
       <div>
         <style>{`
@@ -102,8 +100,7 @@ class Nav extends Component {
           >
             Leader Board
           </NavLink>
-          {!toggleNav &&
-            authedUser !== null && (
+          {authedUser !== null && (
               <NavLink
                 exact
                 to="/"
@@ -115,8 +112,7 @@ class Nav extends Component {
               </NavLink>
             )}
 
-          {!toggleNav &&
-            authedUser !== null && (
+          {authedUser !== null && (
               <Fragment>
                 <div className="right">
                   <h1
@@ -140,11 +136,10 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, toggleNav }) {
+function mapStateToProps({ authedUser }) {
   return {
     authedUser,
     image: authedUser ? authedUser.avatarURL : null,
-    toggleNav
   };
 }
 
