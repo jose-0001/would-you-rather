@@ -4,15 +4,14 @@ import { Redirect } from "react-router-dom";
 import { handleAddQuestion } from "../actions/questions";
 
 class NewQuestion extends Component {
-  state = {
-  };
+  state = {};
 
   handleSubmit = e => {
     e.preventDefault();
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch } = this.props;
     if (optionOneText && optionTwoText) {
-      dispatch(handleAddQuestion({ optionOneText, optionTwoText }));
+      dispatch(handleAddQuestion(optionOneText, optionTwoText));
     }
     this.setState({
       optionOneText: "",
@@ -27,10 +26,11 @@ class NewQuestion extends Component {
   };
 
   render() {
-
-    const { authedUser} = this.props;
+    const { authedUser } = this.props;
     if (authedUser === null) {
       return <Redirect to="/" />;
+    } else if (this.state.toHome) {
+      return <Redirect to="/home" />;
     }
 
     return (
@@ -115,11 +115,7 @@ class NewQuestion extends Component {
               name="optionTwoText"
               onChange={this.handleInput}
             />
-            <input
-              type="submit"
-              value="Submit"
-              onClick={this.handleSubmit}
-            />
+            <input type="submit" value="Submit" onClick={this.handleSubmit} />
           </form>
         </div>
       </div>

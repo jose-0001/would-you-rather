@@ -16,18 +16,18 @@ export function addQuestion(question) {
   };
 }
 
-export function handleAddQuestion({ optionOneText, optionTwoText }) {
+export function handleAddQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
-
+    const author = authedUser.id
     dispatch(showLoading());
 
     return _saveQuestion({
-      author: authedUser,
+      author,
       optionOneText,
-      optionTwoText
-    }).then(question =>
-      dispatch(addQuestion(question)).then(() => dispatch(hideLoading()))
-    );
+      optionTwoText,
+    })
+      .then(question => dispatch(addQuestion(question)))
+      .then(() => dispatch(hideLoading()));
   };
 }
