@@ -12,21 +12,20 @@ export default function user(state = {}, action) {
         ...action.questions
       };
     case ADD_QUESTION:
+      const { question } = action;
       return {
         ...state,
-        [action.question.id]: action.question
+        [question.id]: { ...question }
       };
     case ADD_VOTE:
+      const { authedUser, qid, answer } = action;
       return {
         ...state,
-        [action.qid]: {
-          ...state[action.qid],
-          [action.answer]: {
-            ...state[action.qid][action.answer],
-            votes: [
-              ...state[action.qid][action.answer].votes,
-              action.authedUser
-            ]
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: [...state[qid][answer].votes, authedUser]
           }
         }
       };

@@ -8,18 +8,20 @@ export default function user(state = {}, action) {
         ...action.users
       };
     case ADD_USER:
+      const { user } = action;
       return {
         ...state,
-        [action.user.id]: { ...action.user }
+        [user.id]: { user }
       };
     case ADD_VOTE:
+      const { authedUser, qid, answer } = action;
       return {
         ...state,
-        [action.authedUser]: {
-          ...state[action.authedUser],
+        [authedUser]: {
+          ...state[authedUser],
           answers: {
-            ...state[action.authedUser].answers,
-            [action.qid]: action.answer
+            ...state[authedUser].answers,
+            [qid]: answer
           }
         }
       };
