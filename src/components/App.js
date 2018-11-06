@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from "../actions/shared";
 import Login from "./Login";
-import Dashboard from "./Dashboard";
+import Home from "./Home";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
@@ -37,7 +37,7 @@ class App extends Component {
               }}
             />
             <Route path="/login" component={Login} />
-            <Route path="/home" component={Dashboard} />
+            <Route path="/home" component={Home} />
             <Route path="/new" component={NewQuestion} />
             <Route path="/leaderboard" component={LeaderBoard} />
             <Route path="/viewpoll" component={ViewPoll} />

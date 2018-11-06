@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Questions from "./Questions";
 
-class Dashboard extends Component {
+class Home extends Component {
   state = {
     toggleTab: false,
     active: false
@@ -69,4 +69,4 @@ function mapStateToProps({ questions, authedUser }) {
   };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Home);
