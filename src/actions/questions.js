@@ -44,19 +44,17 @@ export function addVote({ authedUser, qid, answer }) {
 export function handleAddVote(info) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
-    const authUser = authedUser.id;
+
+    dispatch(showLoading());
 
     const questionPayload = {
-      authedUser: authUser,
+      authedUser: authedUser.id,
       qid: info.qid,
       answer: info.answer
     };
 
-    dispatch(showLoading());
-    dispatch(addVote(questionPayload));
-
-    return _saveQuestionAnswer(questionPayload).then(() =>
-      dispatch(hideLoading())
-    );
+    return _saveQuestionAnswer(questionPayload)
+      .then(() => dispatch(addVote(questionPayload)))
+      .then(() => dispatch(hideLoading()));
   };
 }
