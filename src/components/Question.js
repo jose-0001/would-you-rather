@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 import { handleAddVote } from "../actions/questions";
 
-class Qs extends Component {
+class Question extends Component {
   state = {
     answer: ""
   };
@@ -20,17 +20,16 @@ class Qs extends Component {
     e.preventDefault();
     const { qid, answer } = this.state;
     const { dispatch, history } = this.props;
-    console.log(this.state);
     dispatch(handleAddVote({ qid, answer }));
     history.push("/home");
   };
 
   render() {
-    const { users, optionOne, optionTwo, history } = this.props;
+    const { user, optionOne, optionTwo, history } = this.props;
     const location = {
       pathname: "/viewpoll",
       state: {
-        users,
+        user,
         optionOne,
         optionTwo
       }
@@ -38,17 +37,17 @@ class Qs extends Component {
     return (
       <div style={{ margin: "4% 10%", clear: "both" }}>
         <Header as="h2" attached="top" block>
-          {users.name} asks:
+          {user.name} asks:
         </Header>
         <Segment.Group horizontal style={{ marginTop: 0 }}>
           <Segment attached>
             <Image
               size="medium"
               circular
-              src={users.avatarURL}
+              src={user.avatarURL}
               style={{ margin: "8%" }}
             />
-            <Header as="h2">{users.id}</Header>
+            <Header as="h2">{user.id}</Header>
           </Segment>
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
@@ -59,7 +58,7 @@ class Qs extends Component {
                 name="option"
                 value="optionOne"
                 onClick={e => {
-                  this.handleSelection(e, users.questions[0]);
+                  this.handleSelection(e, user.questions[0]);
                 }}
               />
             )}
@@ -71,7 +70,7 @@ class Qs extends Component {
                 name="option"
                 value="optionTwo"
                 onClick={e => {
-                  this.handleSelection(e, users.questions[1]);
+                  this.handleSelection(e, user.questions[1]);
                 }}
               />
             )}
@@ -103,6 +102,12 @@ class Qs extends Component {
   }
 }
 
-export default connect(({ authedUser }) => {
-  return { authedUser };
-})(withRouter(Qs));
+function mapStateToProps({authedUser, users, questions}, id){
+  return {
+    authedUser,
+    users,
+    questions
+  }
+}
+
+export default connect(mapStateToProps)(withRouter(Question));

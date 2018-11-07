@@ -1,34 +1,48 @@
-import React, { Component} from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import Qs from "./Qs";
+import Question from "./Question";
 
 class Questions extends Component {
   render() {
-    const { users, optionOne, optionTwo, authedUser, toggleTab } = this.props;
+    const {
+      answeredByAuthedUser,
+      user,
+      answered,
+      optionOne,
+      optionTwo
+    } = this.props;
 
-    const answeredByAuthedUser =
-      optionOne.votes.includes(authedUser.id) ||
-      optionTwo.votes.includes(authedUser.id)
-        ? true
-        : false;
-
-    if (!answeredByAuthedUser && toggleTab === false) {
-      return <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />;
-    } else if (answeredByAuthedUser && toggleTab === true) {
-      return <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />;
-    } else {
-      return null;
-    }
+    return (
+      <div>
+        {answered === false && answeredByAuthedUser === null ? (
+          <Question optionOne={optionOne} optionTwo={optionTwo} user={user} />
+        ) : null}
+        {answered && answeredByAuthedUser !== null ? (
+          <Question
+            optionOne={answeredByAuthedUser.optionOne}
+            optionTwo={answeredByAuthedUser.optionTwo}
+            user={user}
+          />
+        ) : null}
+      </div>
+    );
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, { id }) {
+function mapStateToProps({ authedUser, questions, users }, { id }) {
   const question = questions[id];
+  const optionOne = question.optionOne;
+  const optionTwo = question.optionTwo;
   return {
     authedUser,
-    optionOne: question.optionOne,
-    optionTwo: question.optionTwo,
-    users: users[question.author]
+    answeredByAuthedUser:
+      optionOne.votes.includes(authedUser.id) ||
+      optionTwo.votes.includes(authedUser.id)
+        ? question
+        : null,
+    user: users[question.author],
+    optionOne,
+    optionTwo
   };
 }
 

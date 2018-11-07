@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import Qs from "./Qs";
+import Question from "./Question";
 
 class ViewPoll extends Component {
   render() {
@@ -10,10 +10,10 @@ class ViewPoll extends Component {
       return <Redirect to="/" />;
     }
 
-    const { users, optionOne, optionTwo } = this.props.location.state;
+    const { user, optionOne, optionTwo } = this.props.location.state;
     return (
       <div>
-        <Qs users={users} optionOne={optionOne} optionTwo={optionTwo} />
+        <Question user={user} optionOne={optionOne} optionTwo={optionTwo} />
       </div>
     );
   }

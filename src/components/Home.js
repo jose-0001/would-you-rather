@@ -5,20 +5,20 @@ import Questions from "./Questions";
 
 class Home extends Component {
   state = {
-    toggleTab: false,
+    answered: false,
     active: false
   };
 
   handleToggleTab = () => {
     this.setState(prevState => ({
       active: !prevState.active,
-      toggleTab: !prevState.toggleTab
+      answered: !prevState.answered
     }));
   };
 
   render() {
     const { authedUser } = this.props;
-    const { toggleTab, active } = this.state;
+    const { answered, active } = this.state;
     if (authedUser === null) {
       return <Redirect to="/" />;
     }
@@ -52,7 +52,7 @@ class Home extends Component {
           )}
 
           {this.props.questionIds.map(id => (
-            <Questions id={id} key={id} toggleTab={toggleTab} />
+            <Questions id={id} key={id} answered={answered} />
           ))}
         </div>
       </div>
