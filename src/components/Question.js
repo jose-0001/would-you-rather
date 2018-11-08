@@ -25,15 +25,16 @@ class Question extends Component {
   };
 
   render() {
-    const { user, optionOne, optionTwo, history } = this.props;
+    const { user, optionOne, optionTwo, history, match } = this.props;
     const location = {
-      pathname: "/viewpoll",
+      pathname: `/questions/${user.questions[0]}`,
       state: {
         user,
         optionOne,
         optionTwo
       }
     };
+    console.log(this.props);
     return (
       <div style={{ margin: "4% 10%", clear: "both" }}>
         <Header as="h2" attached="top" block>
@@ -52,7 +53,7 @@ class Question extends Component {
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
-            {history.location.pathname === "/viewpoll" && (
+            {match.path === "/questions" && (
               <input
                 type="radio"
                 name="option"
@@ -64,7 +65,7 @@ class Question extends Component {
             )}
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
-            {history.location.pathname === "/viewpoll" && (
+            {match.path === "/questions" && (
               <input
                 type="radio"
                 name="option"
@@ -74,7 +75,7 @@ class Question extends Component {
                 }}
               />
             )}
-            {history.location.pathname === "/viewpoll" ? (
+            {match.path === "/questions" ? (
               <Button
                 fluid
                 inverted
@@ -102,12 +103,12 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({authedUser, users, questions}, id){
+function mapStateToProps({ authedUser, users, questions }, id) {
   return {
     authedUser,
     users,
     questions
-  }
+  };
 }
 
 export default connect(mapStateToProps)(withRouter(Question));
