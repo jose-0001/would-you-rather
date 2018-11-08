@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 import { handleAddVote } from "../actions/questions";
 
-class Question extends Component {
+class UnAnsweredQuestion extends Component {
   state = {
     answer: ""
   };
@@ -110,4 +110,4 @@ function mapStateToProps({ authedUser, users, questions }, id) {
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Question));
+export default connect(mapStateToProps)(withRouter(UnAnsweredQuestion));

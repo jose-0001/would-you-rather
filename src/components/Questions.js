@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Question from "./Question";
+import UnAnsweredQuestion from "./UnAnsweredQuestion";
 
 class Questions extends Component {
   render() {
@@ -18,7 +19,7 @@ class Questions extends Component {
           <Question optionOne={optionOne} optionTwo={optionTwo} user={user} />
         ) : null}
         {answered && answeredByAuthedUser !== null ? (
-          <Question
+          <UnAnsweredQuestion
             optionOne={answeredByAuthedUser.optionOne}
             optionTwo={answeredByAuthedUser.optionTwo}
             user={user}

@@ -6,12 +6,10 @@ import Questions from "./Questions";
 class Home extends Component {
   state = {
     answered: false,
-    active: false
   };
 
   handleToggleTab = () => {
     this.setState(prevState => ({
-      active: !prevState.active,
       answered: !prevState.answered
     }));
   };
@@ -22,7 +20,7 @@ class Home extends Component {
     if (authedUser === null) {
       return <Redirect to="/" />;
     }
-
+    console.log(this.props, this.state);
     return (
       <div>
         <style>
@@ -41,7 +39,7 @@ class Home extends Component {
           `}
         </style>
         <div style={{ margin: "3%" }}>
-          {active === false ? (
+          {answered === false ? (
             <div className="answersTab" onClick={this.handleToggleTab}>
               UnAnswered Questions
             </div>
