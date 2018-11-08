@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Questions from "./Questions";
 
 class Home extends Component {
   state = {
-    answered: false,
+    answered: false
   };
 
   handleToggleTab = () => {
@@ -15,12 +15,11 @@ class Home extends Component {
   };
 
   render() {
-    const { authedUser } = this.props;
-    const { answered, active } = this.state;
+    const { authedUser, unAnsweredQIds, answeredQIds } = this.props;
+    const { answered } = this.state;
     if (authedUser === null) {
       return <Redirect to="/" />;
     }
-    console.log(this.props, this.state);
     return (
       <div>
         <style>
@@ -40,18 +39,24 @@ class Home extends Component {
         </style>
         <div style={{ margin: "3%" }}>
           {answered === false ? (
-            <div className="answersTab" onClick={this.handleToggleTab}>
-              UnAnswered Questions
-            </div>
+            <Fragment>
+              <div className="answersTab" onClick={this.handleToggleTab}>
+                UnAnswered Questions
+              </div>
+              {unAnsweredQIds.map(id => (
+                <Questions id={id} key={id} />
+              ))}
+            </Fragment>
           ) : (
-            <div className="answersTab" onClick={this.handleToggleTab}>
-              Answered Questions
-            </div>
+            <Fragment>
+              <div className="answersTab" onClick={this.handleToggleTab}>
+                Answered Questions
+              </div>
+              {answeredQIds.map(id => (
+                <Questions id={id} key={id} />
+              ))}
+            </Fragment>
           )}
-
-          {this.props.questionIds.map(id => (
-            <Questions id={id} key={id} answered={answered} />
-          ))}
         </div>
       </div>
     );
@@ -59,11 +64,44 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, authedUser }) {
+  const questionIds = Object.keys(questions).sort(
+    (a, b) => questions[b].timestamp - questions[a].timestamp
+  );
+
+  const answeredQIds = Object.values(questions)
+    .map((question, i) => {
+      if (
+        question.optionTwo.votes.includes(authedUser.id) ||
+        question.optionOne.votes.includes(authedUser.id)
+      ) {
+        return questionIds[i];
+      } else {
+        return "";
+      }
+    })
+    .filter(id => {
+      return id.length > 0;
+    });
+
+  const unAnsweredQIds = Object.values(questions)
+    .map((question, i) => {
+      if (
+        !question.optionTwo.votes.includes(authedUser.id) &&
+        !question.optionOne.votes.includes(authedUser.id)
+      ) {
+        return questionIds[i];
+      } else {
+        return "";
+      }
+    })
+    .filter(id => {
+      return id.length > 0;
+    });
+
   return {
     authedUser,
-    questionIds: Object.keys(questions).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    )
+    answeredQIds,
+    unAnsweredQIds
   };
 }
 

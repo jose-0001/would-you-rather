@@ -12,19 +12,10 @@ class Questions extends Component {
       optionOne,
       optionTwo
     } = this.props;
-
+    console.log(this.props)
     return (
       <div>
-        {answered === false && answeredByAuthedUser === null ? (
-          <Question optionOne={optionOne} optionTwo={optionTwo} user={user} />
-        ) : null}
-        {answered && answeredByAuthedUser !== null ? (
-          <UnAnsweredQuestion
-            optionOne={answeredByAuthedUser.optionOne}
-            optionTwo={answeredByAuthedUser.optionTwo}
-            user={user}
-          />
-        ) : null}
+        hi
       </div>
     );
   }
@@ -36,11 +27,6 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
   const optionTwo = question.optionTwo;
   return {
     authedUser,
-    answeredByAuthedUser:
-      optionOne.votes.includes(authedUser.id) ||
-      optionTwo.votes.includes(authedUser.id)
-        ? question
-        : null,
     user: users[question.author],
     optionOne,
     optionTwo
