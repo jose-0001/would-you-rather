@@ -26,14 +26,7 @@ class UnAnsweredQuestion extends Component {
 
   render() {
     const { user, optionOne, optionTwo, history, match } = this.props;
-    const location = {
-      pathname: `/questions/${user.questions[0]}`,
-      state: {
-        user,
-        optionOne,
-        optionTwo
-      }
-    };
+    console.log(this.props);
     return (
       <div style={{ margin: "4% 10%", clear: "both" }}>
         <Header as="h2" attached="top" block>
@@ -90,7 +83,7 @@ class UnAnsweredQuestion extends Component {
                 inverted
                 color="green"
                 style={{ marginTop: "8%" }}
-                onClick={() => history.push(location)}
+                // onClick={() => history.push(location)}
               >
                 View Poll
               </Button>
@@ -102,11 +95,18 @@ class UnAnsweredQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, id) {
+function mapStateToProps({ authedUser, questions, users }, { id }) {
+  const question = questions[id];
+  const optionOne = question.optionOne;
+  const optionTwo = question.optionTwo;
+
+  const answerText = optionTwo.votes.includes(authedUser);
   return {
     authedUser,
-    users,
-    questions
+    user: users[question.author],
+    optionOne,
+    optionTwo,
+    answerText
   };
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 import { handleAddVote } from "../actions/questions";
 
@@ -52,7 +51,7 @@ class Question extends Component {
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
-            {match.path === "/questions" && (
+            {/* {match.path === "/questions" && (
               <input
                 type="radio"
                 name="option"
@@ -61,10 +60,10 @@ class Question extends Component {
                   this.handleSelection(e, user.questions[0]);
                 }}
               />
-            )}
+            )} */}
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
-            {match.path === "/questions" && (
+            {/* {match.path === "/questions" && (
               <input
                 type="radio"
                 name="option"
@@ -73,8 +72,8 @@ class Question extends Component {
                   this.handleSelection(e, user.questions[1]);
                 }}
               />
-            )}
-            {match.path === "/questions" ? (
+            )} */}
+            {/* {match.path === "/questions" ? (
               <Button
                 fluid
                 inverted
@@ -94,7 +93,7 @@ class Question extends Component {
               >
                 View Poll
               </Button>
-            )}
+            )} */}
           </Segment>
         </Segment.Group>
       </div>
@@ -102,12 +101,16 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users, questions }, id) {
+function mapStateToProps({ authedUser, questions, users }, { id }) {
+  const question = questions[id];
+  const optionOne = question.optionOne;
+  const optionTwo = question.optionTwo;
   return {
     authedUser,
-    users,
-    questions
+    user: users[question.author],
+    optionOne,
+    optionTwo
   };
 }
 
-export default connect(mapStateToProps)(withRouter(Question));
+export default connect(mapStateToProps)(Question);
