@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import Question from "./Question";
+import AnsweredQuestion from "./AnsweredQuestion";
 import UnAnsweredQuestion from "./UnAnsweredQuestion";
 
 class Home extends Component {
@@ -21,6 +21,7 @@ class Home extends Component {
     if (authedUser === null) {
       return <Redirect to="/" />;
     }
+    console.log(unAnsweredQIds);
     return (
       <div>
         <style>
@@ -45,7 +46,7 @@ class Home extends Component {
                 UnAnswered Questions
               </div>
               {unAnsweredQIds.map(id => (
-                <Question id={id} key={id} />
+                <UnAnsweredQuestion id={id} key={id} />
               ))}
             </Fragment>
           ) : (
@@ -54,7 +55,7 @@ class Home extends Component {
                 Answered Questions
               </div>
               {answeredQIds.map(id => (
-                <UnAnsweredQuestion id={id} key={id} />
+                <AnsweredQuestion id={id} key={id} />
               ))}
             </Fragment>
           )}

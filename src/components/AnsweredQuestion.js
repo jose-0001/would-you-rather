@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 import { handleAddVote } from "../actions/questions";
 
-class Question extends Component {
+class AnsweredQuestion extends Component {
   state = {
     answer: ""
   };
@@ -51,49 +52,17 @@ class Question extends Component {
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
-            {/* {match.path === "/questions" && (
-              <input
-                type="radio"
-                name="option"
-                value="optionOne"
-                onClick={e => {
-                  this.handleSelection(e, user.questions[0]);
-                }}
-              />
-            )} */}
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
-            {/* {match.path === "/questions" && (
-              <input
-                type="radio"
-                name="option"
-                value="optionTwo"
-                onClick={e => {
-                  this.handleSelection(e, user.questions[1]);
-                }}
-              />
-            )} */}
-            {/* {match.path === "/questions" ? (
-              <Button
-                fluid
-                inverted
-                color="green"
-                style={{ marginTop: "8%" }}
-                onClick={this.handleSubmit}
-              >
-                Submit answer
-              </Button>
-            ) : (
-              <Button
-                fluid
-                inverted
-                color="green"
-                style={{ marginTop: "8%" }}
-                onClick={() => history.push(location)}
-              >
-                View Poll
-              </Button>
-            )} */}
+            <Button
+              fluid
+              inverted
+              color="green"
+              style={{ marginTop: "8%" }}
+              onClick={() => history.push(location)}
+            >
+              View Poll
+            </Button>
           </Segment>
         </Segment.Group>
       </div>
@@ -113,4 +82,4 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(Question);
+export default connect(mapStateToProps)(withRouter(AnsweredQuestion));

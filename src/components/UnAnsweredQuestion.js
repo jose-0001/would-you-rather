@@ -45,49 +45,33 @@ class UnAnsweredQuestion extends Component {
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
-            {match.path === "/questions" && (
-              <input
-                type="radio"
-                name="option"
-                value="optionOne"
-                onClick={e => {
-                  this.handleSelection(e, user.questions[0]);
-                }}
-              />
-            )}
+            <input
+              type="radio"
+              name="option"
+              value="optionOne"
+              onClick={e => {
+                this.handleSelection(e, user.questions[0]);
+              }}
+            />
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
-            {match.path === "/questions" && (
-              <input
-                type="radio"
-                name="option"
-                value="optionTwo"
-                onClick={e => {
-                  this.handleSelection(e, user.questions[1]);
-                }}
-              />
-            )}
-            {match.path === "/questions" ? (
-              <Button
-                fluid
-                inverted
-                color="green"
-                style={{ marginTop: "8%" }}
-                onClick={this.handleSubmit}
-              >
-                Submit answer
-              </Button>
-            ) : (
-              <Button
-                fluid
-                inverted
-                color="green"
-                style={{ marginTop: "8%" }}
-                // onClick={() => history.push(location)}
-              >
-                View Poll
-              </Button>
-            )}
+            <input
+              type="radio"
+              name="option"
+              value="optionTwo"
+              onClick={e => {
+                this.handleSelection(e, user.questions[1]);
+              }}
+            />
+            <Button
+              fluid
+              inverted
+              color="green"
+              style={{ marginTop: "8%" }}
+              onClick={this.handleSubmit}
+            >
+              Submit answer
+            </Button>
           </Segment>
         </Segment.Group>
       </div>
