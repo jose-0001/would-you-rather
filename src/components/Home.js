@@ -16,6 +16,7 @@ class Home extends Component {
   };
 
   render() {
+    console.log(this.props.unAnsweredQIds);
     const { authedUser, unAnsweredQIds, answeredQIds } = this.props;
     const { answered } = this.state;
     if (authedUser === null) {
@@ -65,9 +66,7 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, authedUser }) {
-  const questionIds = Object.keys(questions).sort(
-    (a, b) => questions[b].timestamp - questions[a].timestamp
-  );
+  const questionIds = Object.keys(questions)
 
   const answeredQIds = Object.values(questions)
     .map((question, i) => {
@@ -82,7 +81,9 @@ function mapStateToProps({ questions, authedUser }) {
     })
     .filter(id => {
       return id.length > 0;
-    });
+    }).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    );;
 
   const unAnsweredQIds = Object.values(questions)
     .map((question, i) => {
@@ -97,7 +98,9 @@ function mapStateToProps({ questions, authedUser }) {
     })
     .filter(id => {
       return id.length > 0;
-    });
+    }).sort(
+      (a, b) => questions[b].timestamp - questions[a].timestamp
+    );;
 
   return {
     authedUser,
