@@ -1,7 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { Header, Segment, Image, Divider, Progress } from "semantic-ui-react";
+import {
+  Header,
+  Segment,
+  Image,
+  Divider,
+  Progress,
+  Icon
+} from "semantic-ui-react";
 
 const ViewPoll = ({ authedUser, location, users }) => {
   if (location.state === undefined) {
@@ -39,10 +46,17 @@ const ViewPoll = ({ authedUser, location, users }) => {
         <Segment attached>
           <Header as="h1">Would you rather...</Header>
           <Header as="h3">
-            {optionOneLength}
-            {optionOneLength === 1 ? " user" : " users"} voted for
+            {optionOneLength} out of {userCount} users voted for
           </Header>
           <Header as="h2">{optionOne.text}</Header>
+          {optionOne.votes.includes(authedUser.id) && (
+            <Fragment>
+              <Header as="h1">
+                {authedUser.name}{" "}
+                <Icon color="green" name="thumbs up outline" />
+              </Header>
+            </Fragment>
+          )}
           <Progress
             percent={percentage(optionOneLength, userCount)}
             inverted
@@ -51,10 +65,17 @@ const ViewPoll = ({ authedUser, location, users }) => {
           />
           <Divider horizontal>Or</Divider>
           <Header as="h3">
-            {optionTwoLength}
-            {optionTwoLength === 1 ? " user" : " users"} voted for
+            {optionTwoLength} out of {userCount} users voted for
           </Header>
           <Header as="h2">{optionTwo.text}</Header>
+          {optionTwo.votes.includes(authedUser.id) && (
+            <Fragment>
+              <Header as="h1">
+                {authedUser.name}{" "}
+                <Icon color="green" name="thumbs up outline" />
+              </Header>
+            </Fragment>
+          )}
           <Progress
             percent={percentage(optionTwoLength, userCount)}
             inverted
