@@ -14,6 +14,7 @@ import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import ViewPoll from "./ViewPoll";
+import FourOFour from "./FourOFour";
 
 class App extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
             <Route path="/new" component={NewQuestion} />
             <Route path="/leaderboard" component={LeaderBoard} />
             <Route path="/questions" component={ViewPoll} />
+            <Route path="/404" component={FourOFour} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>
         </Fragment>
