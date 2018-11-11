@@ -38,7 +38,11 @@ const ViewPoll = ({ authedUser, location, users }) => {
         </Segment>
         <Segment attached>
           <Header as="h1">Would you rather...</Header>
-          <Header as="h3">{optionOne.text}</Header>
+          <Header as="h3">
+            {optionOneLength}
+            {optionOneLength === 1 ? " user" : " users"} voted for
+          </Header>
+          <Header as="h2">{optionOne.text}</Header>
           <Progress
             percent={percentage(optionOneLength, userCount)}
             inverted
@@ -46,7 +50,11 @@ const ViewPoll = ({ authedUser, location, users }) => {
             warning
           />
           <Divider horizontal>Or</Divider>
-          <Header as="h3">{optionTwo.text}</Header>
+          <Header as="h3">
+            {optionTwoLength}
+            {optionTwoLength === 1 ? " user" : " users"} voted for
+          </Header>
+          <Header as="h2">{optionTwo.text}</Header>
           <Progress
             percent={percentage(optionTwoLength, userCount)}
             inverted
