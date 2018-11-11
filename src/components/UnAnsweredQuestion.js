@@ -25,7 +25,7 @@ class UnAnsweredQuestion extends Component {
   };
 
   render() {
-    const { user, optionOne, optionTwo } = this.props;
+    const { user, optionOne, optionTwo, id } = this.props;
 
     return (
       <div style={{ margin: "4% 10%", clear: "both" }}>
@@ -50,7 +50,7 @@ class UnAnsweredQuestion extends Component {
               name="option"
               value="optionOne"
               onClick={e => {
-                this.handleSelection(e, user.questions[0]);
+                this.handleSelection(e, id);
               }}
             />
             <Divider horizontal>Or</Divider>
@@ -60,7 +60,7 @@ class UnAnsweredQuestion extends Component {
               name="option"
               value="optionTwo"
               onClick={e => {
-                this.handleSelection(e, user.questions[1]);
+                this.handleSelection(e, id);
               }}
             />
             <Button
