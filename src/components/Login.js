@@ -61,15 +61,16 @@ class Login extends Component {
                 fluid
                 selection
                 options={users.map(user => {
+                  const {name, id, avatarURL} = user;
                   return {
-                    text: user.name,
-                    value: user.id,
+                    text: name,
+                    value: id,
                     image: {
                       avatar: true,
-                      src: user.avatarURL
+                      src: avatarURL
                     },
                     onClick: () => {
-                      this.props.dispatch(setAuthedUser(user));
+                      this.props.dispatch(setAuthedUser(name, id, avatarURL));
                     }
                   };
                 })}
