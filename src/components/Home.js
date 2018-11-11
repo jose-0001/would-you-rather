@@ -21,7 +21,6 @@ class Home extends Component {
     if (authedUser === null) {
       return <Redirect to="/" />;
     }
-    console.log(unAnsweredQIds);
     return (
       <div>
         <style>

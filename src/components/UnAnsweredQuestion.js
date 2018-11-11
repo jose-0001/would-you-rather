@@ -25,8 +25,8 @@ class UnAnsweredQuestion extends Component {
   };
 
   render() {
-    const { user, optionOne, optionTwo, history, match } = this.props;
-    console.log(this.props);
+    const { user, optionOne, optionTwo } = this.props;
+
     return (
       <div style={{ margin: "4% 10%", clear: "both" }}>
         <Header as="h2" attached="top" block>

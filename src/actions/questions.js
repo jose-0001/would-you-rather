@@ -9,10 +9,11 @@ export function receiveQuestions(questions) {
   };
 }
 
-export function addQuestion(question) {
+export function addQuestion(question, authedUser) {
   return {
     type: ADD_QUESTION,
-    question
+    question,
+    authedUser
   };
 }
 
@@ -27,7 +28,7 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       optionOneText,
       optionTwoText
     })
-      .then(question => dispatch(addQuestion(question)))
+      .then(question => dispatch(addQuestion(question, author)))
       .then(() => dispatch(hideLoading()));
   };
 }
