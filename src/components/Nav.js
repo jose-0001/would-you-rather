@@ -100,36 +100,31 @@ class Nav extends Component {
           >
             Leader Board
           </NavLink>
-          {authedUser !== null && (
-              <NavLink
-                exact
-                to="/"
-                name="logout"
-                onClick={this.handleLogOutClick}
-                className="navItem left"
+          <NavLink
+            exact
+            to="/"
+            name="logout"
+            onClick={this.handleLogOutClick}
+            className="navItem left"
+          >
+            Logout
+          </NavLink>
+          <Fragment>
+            <div className="right">
+              <h1
+                style={{
+                  float: "right",
+                  position: "relative",
+                  top: "20px",
+                  color: "#f7f7f7",
+                  margin: "0 15px"
+                }}
               >
-                Logout
-              </NavLink>
-            )}
-
-          {authedUser !== null && (
-              <Fragment>
-                <div className="right">
-                  <h1
-                    style={{
-                      float: "right",
-                      position: "relative",
-                      top: "20px",
-                      color: "#f7f7f7",
-                      margin: "0 15px"
-                    }}
-                  >
-                    {authedUser.name}
-                  </h1>
-                  <img alt="avatar" className="avatar" src={image} />
-                </div>
-              </Fragment>
-            )}
+                {authedUser.name}
+              </h1>
+              <img alt="avatar" className="avatar" src={image} />
+            </div>
+          </Fragment>
         </div>
       </div>
     );
@@ -139,7 +134,7 @@ class Nav extends Component {
 function mapStateToProps({ authedUser }) {
   return {
     authedUser,
-    image: authedUser ? authedUser.avatarURL : null,
+    image: authedUser ? authedUser.avatarURL : null
   };
 }
 
