@@ -20,8 +20,12 @@ class UnAnsweredQuestion extends Component {
     e.preventDefault();
     const { qid, answer } = this.state;
     const { dispatch, history } = this.props;
-    dispatch(handleAddVote({ qid, answer }));
-    history.push("/home");
+    if (answer) {
+      dispatch(handleAddVote({ qid, answer }));
+      history.push("/home");
+    } else {
+      alert("Select an option to submit answer.")
+    }
   };
 
   render() {
