@@ -16,7 +16,6 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.props.unAnsweredQIds);
     const { authedUser, unAnsweredQIds, answeredQIds } = this.props;
     const { answered } = this.state;
     if (authedUser === null) {

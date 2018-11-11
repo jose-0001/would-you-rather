@@ -25,9 +25,9 @@ class AnsweredQuestion extends Component {
   };
 
   render() {
-    const { user, optionOne, optionTwo, history } = this.props;
+    const { user, optionOne, optionTwo, history, id } = this.props;
     const location = {
-      pathname: `/questions/${user.questions[0]}`,
+      pathname: `/questions/${id}`,
       state: {
         user,
         optionOne,
