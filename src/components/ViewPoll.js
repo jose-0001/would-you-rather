@@ -49,39 +49,53 @@ const ViewPoll = ({ authedUser, location, users }) => {
             {optionOneLength} out of {userCount} users voted for
           </Header>
           <Header as="h2">{optionOne.text}</Header>
-          {optionOne.votes.includes(authedUser.id) && (
+          {optionOne.votes.includes(authedUser.id) ? (
             <Fragment>
               <Header as="h1">
                 {authedUser.name}{" "}
                 <Icon color="green" name="thumbs up outline" />
               </Header>
+              <Progress
+                percent={percentage(optionOneLength, userCount)}
+                inverted
+                progress
+                success
+              />
             </Fragment>
+          ) : (
+            <Progress
+              percent={percentage(optionOneLength, userCount)}
+              inverted
+              progress
+              error
+            />
           )}
-          <Progress
-            percent={percentage(optionOneLength, userCount)}
-            inverted
-            progress
-            warning
-          />
           <Divider horizontal>Or</Divider>
           <Header as="h3">
             {optionTwoLength} out of {userCount} users voted for
           </Header>
           <Header as="h2">{optionTwo.text}</Header>
-          {optionTwo.votes.includes(authedUser.id) && (
+          {optionTwo.votes.includes(authedUser.id) ? (
             <Fragment>
               <Header as="h1">
                 {authedUser.name}{" "}
                 <Icon color="green" name="thumbs up outline" />
               </Header>
+              <Progress
+                percent={percentage(optionTwoLength, userCount)}
+                inverted
+                progress
+                success
+              />
             </Fragment>
+          ) : (
+            <Progress
+              percent={percentage(optionTwoLength, userCount)}
+              inverted
+              progress
+              error
+            />
           )}
-          <Progress
-            percent={percentage(optionTwoLength, userCount)}
-            inverted
-            progress
-            warning
-          />
         </Segment>
       </Segment.Group>
     </div>
