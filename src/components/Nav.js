@@ -79,6 +79,7 @@ class Nav extends Component {
             to="/home"
             name="/home"
             className="navItem left"
+            activeClassName="selected"
             onClick={this.handleItemClick}
           >
             Home
