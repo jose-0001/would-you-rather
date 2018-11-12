@@ -60,7 +60,7 @@ class Login extends Component {
                       src: avatarURL
                     },
                     onClick: () => {
-                      this.props.dispatch(setAuthedUser(name, id, avatarURL));
+                      this.props.dispatch(setAuthedUser(user));
                       this.props.history.push("/home");
                     }
                   };
