@@ -39,7 +39,7 @@ class App extends Component {
             />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
-            <Route path="/new" component={NewQuestion} />
+            <Route path="/add" component={NewQuestion} />
             <Route path="/leaderboard" component={LeaderBoard} />
             <Route path="/questions" component={ViewPoll} />
             <Route path="/404" component={FourOFour} />
