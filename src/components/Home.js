@@ -65,41 +65,21 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, authedUser }) {
-  const questionIds = Object.keys(questions)
-
   const answeredQIds = Object.values(questions)
-    .map((question, i) => {
-      if (
-        question.optionTwo.votes.includes(authedUser.id) ||
-        question.optionOne.votes.includes(authedUser.id)
-      ) {
-        return questionIds[i];
-      } else {
-        return "";
-      }
+    .filter(({ optionOne, optionTwo }) => {
+      return optionOne.votes.includes(authedUser.id) ||
+             optionTwo.votes.includes(authedUser.id);
     })
-    .filter(id => {
-      return id.length > 0;
-    }).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    );;
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .map(question => question.id);
 
   const unAnsweredQIds = Object.values(questions)
-    .map((question, i) => {
-      if (
-        !question.optionTwo.votes.includes(authedUser.id) &&
-        !question.optionOne.votes.includes(authedUser.id)
-      ) {
-        return questionIds[i];
-      } else {
-        return "";
-      }
+    .filter(({ optionOne, optionTwo }) => {
+      return !optionOne.votes.includes(authedUser.id) &&
+             !optionTwo.votes.includes(authedUser.id);
     })
-    .filter(id => {
-      return id.length > 0;
-    }).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    );;
+    .sort((a, b) => b.timestamp - a.timestamp)
+    .map(question => question.id);
 
   return {
     authedUser,
