@@ -11,16 +11,6 @@ import {
 } from "semantic-ui-react";
 
 class Login extends Component {
-  handleLogInClick = e => {
-    const { history, authedUser } = this.props;
-    e.preventDefault();
-    if (authedUser === null) {
-      alert("Select user to log in with.");
-    } else {
-      history.push("/home");
-    }
-  };
-
   render() {
     const { authedUser, users } = this.props;
     return (
@@ -61,7 +51,7 @@ class Login extends Component {
                 fluid
                 selection
                 options={users.map(user => {
-                  const {name, id, avatarURL} = user;
+                  const { name, id, avatarURL } = user;
                   return {
                     text: name,
                     value: id,
@@ -71,13 +61,11 @@ class Login extends Component {
                     },
                     onClick: () => {
                       this.props.dispatch(setAuthedUser(name, id, avatarURL));
+                      this.props.history.push("/home");
                     }
                   };
                 })}
               />
-              <Button secondary fluid onClick={this.handleLogInClick}>
-                Log In
-              </Button>
             </Segment>
           </Grid.Column>
         </Grid>
@@ -89,7 +77,7 @@ class Login extends Component {
 function mapStateToProps({ users, authedUser }) {
   return {
     users: Object.values(users),
-    authedUser,
+    authedUser
   };
 }
 
