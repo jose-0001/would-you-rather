@@ -11,6 +11,7 @@ class LeaderBoard extends Component {
       return <Redirect to="/" />;
     }
 
+    console.log(users);
     return (
       <div>
         {users.map(user => (
@@ -30,7 +31,7 @@ class LeaderBoard extends Component {
 function mapStateToProps({ users, authedUser }) {
   return {
     authedUser,
-    users: Object.values(users)
+    users: Object.values(users).sort((a, b) => (b.questions.length + Object.keys(b.answers).length) - (a.questions.length + Object.keys(a.answers).length))
   };
 }
 
