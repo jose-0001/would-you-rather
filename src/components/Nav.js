@@ -100,15 +100,20 @@ class Nav extends Component {
           >
             Leader Board
           </NavLink>
-          <NavLink
-            exact
-            to="/"
-            name="logout"
-            onClick={this.handleLogOutClick}
-            className="navItem left"
-          >
-            Logout
-          </NavLink>
+          {authedUser !== null ? (
+            <NavLink
+              exact
+              to="/"
+              name="logout"
+              onClick={this.handleLogOutClick}
+              className="navItem left"
+            >
+              Logout
+            </NavLink>
+          ) : (
+            <p>You are not logged in.</p>
+          )}
+
           <Fragment>
             <div className="right">
               <h1

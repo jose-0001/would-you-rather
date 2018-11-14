@@ -1,17 +1,25 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
-import {
-  Grid,
-  Dropdown,
-  Header,
-  Icon,
-  Segment
-} from "semantic-ui-react";
+import { Grid, Dropdown, Header, Icon, Segment } from "semantic-ui-react";
 
 class Login extends Component {
+  state = {
+    redirectToReferrer: false
+  };
+
   render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { redirectToReferrer } = this.state;
     const { authedUser, users } = this.props;
+
+    if (redirectToReferrer === true) {
+      return <Redirect to={from} />;
+    } else if (authedUser !== null) {
+      return <Redirect to="/home" />;
+    }
+
     return (
       <div style={{ margin: "4% 2%" }}>
         <Grid
@@ -60,7 +68,8 @@ class Login extends Component {
                     },
                     onClick: () => {
                       this.props.dispatch(setAuthedUser(user));
-                      this.props.history.push("/home");
+                      // this.props.history.push("/home");
+                      this.setState({ redirectToReferrer: true });
                     }
                   };
                 })}

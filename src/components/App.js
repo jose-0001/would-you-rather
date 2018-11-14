@@ -16,7 +16,6 @@ import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import ViewPoll from "./ViewPoll";
 import FourOFour from "./FourOFour";
-import Protected from "./Protected";
 
 class App extends Component {
   componentDidMount() {
