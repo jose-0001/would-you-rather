@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import AnsweredQuestion from "./AnsweredQuestion";
 import UnAnsweredQuestion from "./UnAnsweredQuestion";
 
@@ -16,11 +15,9 @@ class Home extends Component {
   };
 
   render() {
-    const { authedUser, unAnsweredQIds, answeredQIds } = this.props;
+    const { unAnsweredQIds, answeredQIds } = this.props;
     const { answered } = this.state;
-    if (authedUser === null) {
-      return <Redirect to="/" />;
-    }
+ 
     return (
       <div>
         <style>
@@ -82,7 +79,6 @@ function mapStateToProps({ questions, authedUser }) {
     .map(question => question.id);
 
   return {
-    authedUser,
     answeredQIds,
     unAnsweredQIds
   };

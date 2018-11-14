@@ -39,12 +39,11 @@ class App extends Component {
                 return <Redirect to="/login" />;
               }}
             />
-            <PrivateRoute path="/protected" component={Protected} />
+            <PrivateRoute path="/home" component={Home} />
+            <PrivateRoute path="/add" component={NewQuestion} />
+            <PrivateRoute path="/leaderboard" component={LeaderBoard} />
+            <PrivateRoute path="/questions" component={ViewPoll} />
             <Route path="/login" component={Login} />
-            <Route path="/home" component={Home} />
-            <Route path="/add" component={NewQuestion} />
-            <Route path="/leaderboard" component={LeaderBoard} />
-            <Route path="/questions" component={ViewPoll} />
             <Route path="/404" component={FourOFour} />
             <Route render={() => <Redirect to="/" />} />
           </Switch>

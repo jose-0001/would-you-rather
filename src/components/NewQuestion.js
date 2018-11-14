@@ -26,10 +26,7 @@ class NewQuestion extends Component {
   };
 
   render() {
-    const { authedUser } = this.props;
-    if (authedUser === null) {
-      return <Redirect to="/" />;
-    } else if (this.state.toHome) {
+    if (this.state.toHome) {
       return <Redirect to="/home" />;
     }
 
@@ -123,6 +120,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect(({ authedUser }) => {
-  return { authedUser };
-})(NewQuestion);
+export default connect()(NewQuestion);

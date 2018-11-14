@@ -24,10 +24,6 @@ const ViewPoll = ({ authedUser, location, users }) => {
     return Math.floor((option / userCount) * 100);
   };
 
-  if (authedUser === null) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div style={{ margin: "4% 10%", clear: "both" }}>
       <Header as="h2" attached="top" block>
