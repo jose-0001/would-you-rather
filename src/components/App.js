@@ -8,6 +8,7 @@ import {
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading-bar";
 import { handleInitialData } from "../actions/shared";
+import PrivateRoute from "./PrivateRoute";
 import Login from "./Login";
 import Home from "./Home";
 import Nav from "./Nav";
@@ -15,6 +16,7 @@ import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 import ViewPoll from "./ViewPoll";
 import FourOFour from "./FourOFour";
+import Protected from "./Protected";
 
 class App extends Component {
   componentDidMount() {
@@ -26,9 +28,9 @@ class App extends Component {
       <Router>
         <Fragment>
           {authedUser !== null && <Nav />}
-            <header>
-              <LoadingBar />
-            </header>
+          <header>
+            <LoadingBar />
+          </header>
           <Switch>
             <Route
               exact
@@ -37,6 +39,7 @@ class App extends Component {
                 return <Redirect to="/login" />;
               }}
             />
+            <PrivateRoute path="/protected" component={Protected} />
             <Route path="/login" component={Login} />
             <Route path="/home" component={Home} />
             <Route path="/add" component={NewQuestion} />

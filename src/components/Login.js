@@ -4,7 +4,6 @@ import { setAuthedUser } from "../actions/authedUser";
 import {
   Grid,
   Dropdown,
-  Button,
   Header,
   Icon,
   Segment
