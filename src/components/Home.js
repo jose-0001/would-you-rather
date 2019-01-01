@@ -8,16 +8,19 @@ class Home extends Component {
     answered: false
   };
 
-  handleToggleTab = () => {
+  handleToggleTab = (event) => {
     this.setState(prevState => ({
       answered: !prevState.answered
     }));
+    if (event.key === "Enter"){
+      console.log('enter is pressed')
+    }
   };
 
   render() {
     const { unAnsweredQIds, answeredQIds } = this.props;
     const { answered } = this.state;
- 
+
     return (
       <div>
         <style>
@@ -38,7 +41,12 @@ class Home extends Component {
         <div style={{ margin: "3%" }}>
           {answered === false ? (
             <Fragment>
-              <div className="answersTab" onClick={this.handleToggleTab}>
+              <div
+                className="answersTab"
+                onClick={this.handleToggleTab}
+                onKeyPress={this.handleToggleTab}
+                tabIndex="0"
+              >
                 UnAnswered Questions
               </div>
               {unAnsweredQIds.map(id => (
@@ -47,7 +55,12 @@ class Home extends Component {
             </Fragment>
           ) : (
             <Fragment>
-              <div className="answersTab" onClick={this.handleToggleTab}>
+              <div
+                className="answersTab"
+                onClick={this.handleToggleTab}
+                onKeyPress={this.handleToggleTab}
+                tabIndex="0"
+              >
                 Answered Questions
               </div>
               {answeredQIds.map(id => (
@@ -64,16 +77,20 @@ class Home extends Component {
 function mapStateToProps({ questions, authedUser }) {
   const answeredQIds = Object.values(questions)
     .filter(({ optionOne, optionTwo }) => {
-      return optionOne.votes.includes(authedUser.id) ||
-             optionTwo.votes.includes(authedUser.id);
+      return (
+        optionOne.votes.includes(authedUser.id) ||
+        optionTwo.votes.includes(authedUser.id)
+      );
     })
     .sort((a, b) => b.timestamp - a.timestamp)
     .map(question => question.id);
 
   const unAnsweredQIds = Object.values(questions)
     .filter(({ optionOne, optionTwo }) => {
-      return !optionOne.votes.includes(authedUser.id) &&
-             !optionTwo.votes.includes(authedUser.id);
+      return (
+        !optionOne.votes.includes(authedUser.id) &&
+        !optionTwo.votes.includes(authedUser.id)
+      );
     })
     .sort((a, b) => b.timestamp - a.timestamp)
     .map(question => question.id);
