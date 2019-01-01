@@ -1,0 +1,14 @@
+.answerNav {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+.answersTab {
+  flex: auto;
+  margin: 0 13px;
+  padding: 15px;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+}
