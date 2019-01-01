@@ -42,7 +42,7 @@ class UnAnsweredQuestion extends Component {
               size="medium"
               circular
               src={user.avatarURL}
-              style={{ margin: "8%" }}
+              style={{ width: "100%" }}
             />
             <Header as="h2">{user.id}</Header>
           </Segment>
