@@ -4,17 +4,6 @@ import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 
 class QuestionDetail extends Component {
-  state = {
-    answer: ""
-  };
-
-  handleSelection = (e, qid) => {
-    this.setState({
-      answer: e.target.value,
-      qid
-    });
-  };
-
   handleSubmit = e => {
     const { history, user, optionOne, optionTwo, id } = this.props;
     const location = {

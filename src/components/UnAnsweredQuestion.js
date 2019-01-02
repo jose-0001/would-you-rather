@@ -32,7 +32,7 @@ class UnAnsweredQuestion extends Component {
     const { user, optionOne, optionTwo, id } = this.props.location.state;
     console.log(optionOne);
     return (
-      <div style={{textAlign: "center", margin: "1% 10%"}}>
+      <div style={{margin: "1% 10%"}}>
         <Header as="h2" attached="top" block>
           {user.name} asks:
         </Header>
