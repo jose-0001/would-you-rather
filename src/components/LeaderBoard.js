@@ -4,7 +4,13 @@ import CardStats from "./CardStats";
 
 const LeaderBoard = ({ users }) => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexFlow: "row wrap",
+        justifyContent: "center"
+      }}
+    >
       {users.map(user => (
         <CardStats
           key={user.id}

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import AnsweredQuestion from "./AnsweredQuestion";
 import UnAnsweredQuestion from "./UnAnsweredQuestion";
 import "./Home.css";
+import QuestionDetail from "./QuestionDetail";
 
 class Home extends Component {
   state = {
@@ -13,7 +14,6 @@ class Home extends Component {
     if (event.key === "Enter" || event.button === 0) {
       this.setState({ answered: true });
     }
-
   };
 
   handleUnAnsweredTab = event => {
@@ -27,38 +27,36 @@ class Home extends Component {
     const { answered } = this.state;
 
     return (
-        <main className="main">
-          <div className="answerNav">
-            <div
-              style={{
-                background: 
-                answered === false ? "#4ca0af" : "#333"
-              }}
-              className="answersTab"
-              onClick={this.handleUnAnsweredTab}
-              onKeyPress={this.handleUnAnsweredTab}
-              tabIndex="0"
-            >
-              UnAnswered Questions
-            </div>
-            <div
-              style={{
-                background: 
-                answered === true ? "#4ca0af" : "#333"
-              }}
-              className="answersTab"
-              onClick={this.handleAnsweredTab}
-              onKeyPress={this.handleAnsweredTab}
-              tabIndex="0"
-            >
-              Answered Questions
-            </div>
+      <Fragment>
+        <div className="answerNav">
+          <div
+            style={{
+              background: answered === false ? "#4ca0af" : "#333"
+            }}
+            className="answersTab"
+            onClick={this.handleUnAnsweredTab}
+            onKeyPress={this.handleUnAnsweredTab}
+            tabIndex="0"
+          >
+            UnAnswered Questions
           </div>
-
+          <div
+            style={{
+              background: answered === true ? "#4ca0af" : "#333"
+            }}
+            className="answersTab"
+            onClick={this.handleAnsweredTab}
+            onKeyPress={this.handleAnsweredTab}
+            tabIndex="0"
+          >
+            Answered Questions
+          </div>
+        </div>
+        <main className="main">
           {answered === false ? (
             <Fragment>
               {unAnsweredQIds.map(id => (
-                <UnAnsweredQuestion id={id} key={id} />
+                <QuestionDetail id={id} key={id} />
               ))}
             </Fragment>
           ) : (
@@ -69,6 +67,7 @@ class Home extends Component {
             </Fragment>
           )}
         </main>
+      </Fragment>
     );
   }
 }

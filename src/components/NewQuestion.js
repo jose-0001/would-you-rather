@@ -32,7 +32,6 @@ class NewQuestion extends Component {
     }
 
     return (
-      <div>
         <div className="form">
           <h1>Create New Question</h1>
           <form>
@@ -53,7 +52,6 @@ class NewQuestion extends Component {
             <input type="submit" value="Submit" onClick={this.handleSubmit} />
           </form>
         </div>
-      </div>
     );
   }
 }

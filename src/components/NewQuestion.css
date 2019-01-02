@@ -13,23 +13,19 @@
   font-weight: 300;
   text-align: center;
   color: #fff;
-  margin: -16px -16px 16px -16px;
+  margin-top: 0;
 }
 
 .form input[type="text"] {
-   -webkit-transition: all 0.30s ease-in-out;
-   -moz-transition: all 0.30s ease-in-out;
-   -ms-transition: all 0.30s ease-in-out;
-   -o-transition: all 0.30s ease-in-out;
    outline: none;
    box-sizing: border-box;
    -webkit-box-sizing: border-box;
    -moz-box-sizing: border-box;
    width: 100%;
    background: #fff;
-   margin-bottom: 4%;
+   margin: 3% 0;
    border: 1px solid #ccc;
-   padding: 3%;
+   padding: 2%;
    color: #555;
    font: 95% Arial, Helvetica, sans-serif;
 }
@@ -54,6 +50,6 @@
 
 .form h2 {
   text-align: center;
-  padding: 16px;
+  margin: 0;
   font-family: Arial;
 }

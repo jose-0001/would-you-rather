@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
-import { handleAddVote } from "../actions/questions";
 
-class UnAnsweredQuestion extends Component {
+class QuestionDetail extends Component {
   state = {
     answer: ""
   };
@@ -17,22 +16,25 @@ class UnAnsweredQuestion extends Component {
   };
 
   handleSubmit = e => {
+    const { user, optionOne, optionTwo } = this.props;
+    const location = {
+      pathname: `/questions`,
+      state: {
+        user,
+        optionOne,
+        optionTwo
+      }
+    };
     e.preventDefault();
-    const { qid, answer } = this.state;
-    const { dispatch, history } = this.props;
-    if (answer) {
-      dispatch(handleAddVote({ qid, answer }));
-      history.push("/home");
-    } else {
-      alert("Select an option to submit answer.")
-    }
+    const { history, id } = this.props;
+    history.push(location);
   };
 
   render() {
     const { user, optionOne, optionTwo, id } = this.props;
 
     return (
-      <div style={{textAlign: "center", width: "90%"}}>
+      <div style={{ textAlign: "center", width: "90%" }}>
         <Header as="h2" attached="top" block>
           {user.name} asks:
         </Header>
@@ -49,24 +51,8 @@ class UnAnsweredQuestion extends Component {
           <Segment attached>
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
-            <input
-              type="radio"
-              name="option"
-              value="optionOne"
-              onClick={e => {
-                this.handleSelection(e, id);
-              }}
-            />
             <Divider horizontal>Or</Divider>
             <Header as="h3">{optionTwo.text}</Header>
-            <input
-              type="radio"
-              name="option"
-              value="optionTwo"
-              onClick={e => {
-                this.handleSelection(e, id);
-              }}
-            />
             <Button
               fluid
               inverted
@@ -74,7 +60,7 @@ class UnAnsweredQuestion extends Component {
               style={{ marginTop: "8%" }}
               onClick={this.handleSubmit}
             >
-              Submit answer
+              View Poll
             </Button>
           </Segment>
         </Segment.Group>
@@ -98,4 +84,4 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
   };
 }
 
-export default connect(mapStateToProps)(withRouter(UnAnsweredQuestion));
+export default connect(mapStateToProps)(withRouter(QuestionDetail));

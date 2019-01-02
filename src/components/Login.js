@@ -68,7 +68,6 @@ class Login extends Component {
                     },
                     onClick: () => {
                       this.props.dispatch(setAuthedUser(user));
-                      // this.props.history.push("/home");
                       this.setState({ redirectToReferrer: true });
                     }
                   };

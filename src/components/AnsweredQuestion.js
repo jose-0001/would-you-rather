@@ -5,7 +5,7 @@ import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 
 const AnsweredQuestion = ({ user, optionOne, optionTwo, history, id }) => {
   const location = {
-    pathname: `/questions/${id}`,
+    pathname: `/questions/:${id}`,
     state: {
       user,
       optionOne,
@@ -13,7 +13,7 @@ const AnsweredQuestion = ({ user, optionOne, optionTwo, history, id }) => {
     }
   };
   return (
-    <div style={{textAlign: "center"}}>
+    <div style={{textAlign: "center", width: "90%"}}>
       <Header as="h2" attached="top" block>
         {user.name} asks:
       </Header>
