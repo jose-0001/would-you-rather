@@ -64,13 +64,11 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
   const optionOne = question.optionOne;
   const optionTwo = question.optionTwo;
 
-  const answerText = optionTwo.votes.includes(authedUser);
   return {
     authedUser,
     user: users[question.author],
     optionOne,
     optionTwo,
-    answerText,
     id
   };
 }

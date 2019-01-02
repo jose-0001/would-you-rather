@@ -19,10 +19,20 @@ class UnAnsweredQuestion extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { qid, answer } = this.state;
-    const { dispatch, history } = this.props;
+    const { dispatch, history, location } = this.props;
+    const { user, optionOne, optionTwo, id } = location.state;
+    const questionLocation = {
+      pathname: `/questions/:${id}`,
+      state: {
+        user,
+        optionOne,
+        optionTwo
+      }
+    };
+   
     if (answer) {
       dispatch(handleAddVote({ qid, answer }));
-      history.push("/");
+      history.push(questionLocation);
     } else {
       alert("Select an option to submit answer.")
     }
@@ -84,7 +94,6 @@ class UnAnsweredQuestion extends Component {
 }
 
 function mapStateToProps({ authedUser}) {
-  // const answerText = optionTwo.votes.includes(authedUser);
   return {
     authedUser,
   };
