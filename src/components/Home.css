@@ -10,7 +10,7 @@
   display: flex;
   flex-flow: row;
   justify-content: center;
-  width: 100%;
+  width: 90%;
 }
 
 .answersTab {
@@ -19,6 +19,6 @@
   padding: 15px;
   color: white;
   text-align: center;
-  border-radius: 25px;
-  margin: 3%;
+  border-radius: 15px;
+  margin: 3% 5px;
 }
