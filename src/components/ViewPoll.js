@@ -25,9 +25,9 @@ const ViewPoll = ({ authedUser, location, users }) => {
   };
 
   return (
-    <div style={{ margin: "1% 10%"}}>
+    <div style={{ margin: "1% 10%" }}>
       <Header as="h2" attached="top" block>
-        {user.name} asks:
+        Would you rather...
       </Header>
       <Segment.Group horizontal style={{ marginTop: 0 }}>
         <Segment attached>
@@ -40,23 +40,28 @@ const ViewPoll = ({ authedUser, location, users }) => {
           <Header as="h2">{user.id}</Header>
         </Segment>
         <Segment attached>
-          <Header as="h2">Would you rather...</Header>
-          <Header as="h3">
+          <Header
+            as="h2"
+            style={{ border: "1px solid black", textAlign: "center" }}
+          >
+            {optionOne.text}
+          </Header>
+          <Header as="h3" style={{ textAlign: "center" }}>
             {optionOneLength} out of {userCount} users voted for
           </Header>
-          <Header as="h2">{optionOne.text}</Header>
           {optionOne.votes.includes(authedUser.id) ? (
             <Fragment>
-              <Header as="h1">
-                {authedUser.name}{" "}
+              <Header as="h2">
+                <Progress
+                  percent={percentage(optionOneLength, userCount)}
+                  inverted
+                  progress
+                  success
+                />
                 <Icon color="green" name="thumbs up outline" />
+                <br />
+                {`${authedUser.name} chose this answer `}
               </Header>
-              <Progress
-                percent={percentage(optionOneLength, userCount)}
-                inverted
-                progress
-                success
-              />
             </Fragment>
           ) : (
             <Progress
@@ -67,22 +72,28 @@ const ViewPoll = ({ authedUser, location, users }) => {
             />
           )}
           <Divider horizontal>Or</Divider>
-          <Header as="h3">
+          <Header
+            as="h2"
+            style={{ border: "1px solid black", textAlign: "center" }}
+          >
+            {optionTwo.text}
+          </Header>
+          <Header as="h3" style={{ textAlign: "center" }}>
             {optionTwoLength} out of {userCount} users voted for
           </Header>
-          <Header as="h2">{optionTwo.text}</Header>
           {optionTwo.votes.includes(authedUser.id) ? (
             <Fragment>
               <Header as="h2">
-                {authedUser.name}{" chose this answer "}
+                <Progress
+                  percent={percentage(optionTwoLength, userCount)}
+                  inverted
+                  progress
+                  success
+                />
                 <Icon color="green" name="thumbs up outline" />
+                <br />
+                {`${authedUser.name} chose this answer `}
               </Header>
-              <Progress
-                percent={percentage(optionTwoLength, userCount)}
-                inverted
-                progress
-                success
-              />
             </Fragment>
           ) : (
             <Progress
