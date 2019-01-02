@@ -13,7 +13,7 @@ const AnsweredQuestion = ({ user, optionOne, optionTwo, history, id }) => {
     }
   };
   return (
-    <div style={{ margin: "4% 10%", clear: "both" }}>
+    <div style={{textAlign: "center"}}>
       <Header as="h2" attached="top" block>
         {user.name} asks:
       </Header>

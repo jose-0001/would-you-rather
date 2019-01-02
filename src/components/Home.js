@@ -27,8 +27,7 @@ class Home extends Component {
     const { answered } = this.state;
 
     return (
-      <div>
-        <div style={{ margin: "3%" }}>
+        <main className="main">
           <div className="answerNav">
             <div
               style={{
@@ -69,8 +68,7 @@ class Home extends Component {
               ))}
             </Fragment>
           )}
-        </div>
-      </div>
+        </main>
     );
   }
 }

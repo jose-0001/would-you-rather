@@ -1,0 +1,43 @@
+.topNav {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  max-height: 100px;
+  background-color: rgb(228, 228, 228);
+  box-shadow: 0 0 2px 0;
+}
+
+.topNav a {
+  color: black;
+  padding: 5%;
+  font-size: 1.3em;
+  width: 25%;
+  text-align: center;
+  align-self: center;
+  justify-content: center;
+}
+
+
+
+.avatar {
+  max-width: 75px;
+  border-radius: 50%;
+}
+
+.left {
+  display: flex;
+  flex-flow: row wrap;
+  width: 50%;
+  justify-content: flex-end;
+  align-content: center;
+}
+
+.right {
+  align-self: flex-end;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}

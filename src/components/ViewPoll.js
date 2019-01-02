@@ -25,7 +25,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
   };
 
   return (
-    <div style={{ margin: "4% 10%", clear: "both" }}>
+    <div style={{ margin: "1% 10%"}}>
       <Header as="h2" attached="top" block>
         {user.name} asks:
       </Header>

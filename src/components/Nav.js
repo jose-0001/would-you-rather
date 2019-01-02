@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { NavLink, Redirect } from "react-router-dom";
 import { handleLogOut } from "../actions/shared";
+import "./Nav.css";
 
 class Nav extends Component {
   handleItemClick = e => {
@@ -20,61 +21,8 @@ class Nav extends Component {
   render() {
     const { authedUser, image } = this.props;
     return (
-      <div>
-        <style>{`
-      .topNav {
-        list-style-type:none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: #333;
-        max-height: 170px;
-      }
-
-      .topNav .left {
-        float: left;
-      }
-
-      .topNav a {
-        display: block;
-        border-radius: 5%;
-        color: white;
-        text-align: center;
-        padding: 3%;
-        text-decoration: none;
-        max-height: 79px;
-      }
-
-      .topNav a:hover:not(.active) {
-        background-color: #4CA0AF;
-        max-height: 79px;
-      }
-
-      .right {
-        float: right;
-        max-width: 40%;
-        margin-top: 10px;
-      }
-
-      .avatar {
-        margin-top: 5px;
-        float: right;
-        width: 11%;
-        border-radius: 50%;
-      }
-
-      .logout {
-        float: left;
-      }
-
-      @media screen and (max-width: 600px) {
-        .topNav .right,
-        .topNav .left {
-          float: none
-        }
-      }
-    `}</style>
-        <div className="topNav">
+      <nav className="topNav">
+        <div className="left">
           <NavLink
             to="/home"
             name="/home"
@@ -113,25 +61,13 @@ class Nav extends Component {
           ) : (
             <p>You are not logged in.</p>
           )}
-
-          <Fragment>
-            <div className="right">
-              <h1
-                style={{
-                  float: "right",
-                  position: "relative",
-                  top: "20px",
-                  color: "#f7f7f7",
-                  margin: "0 15px"
-                }}
-              >
-                {authedUser.name}
-              </h1>
-              <img alt="avatar" className="avatar" src={image} />
-            </div>
-          </Fragment>
         </div>
-      </div>
+
+        <div className="right">
+          <h2 style={{ color: "#black", margin: "10%" }}>{authedUser.name}</h2>
+          <img alt="avatar" className="avatar" src={image} />
+        </div>
+      </nav>
     );
   }
 }
