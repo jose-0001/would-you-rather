@@ -37,7 +37,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
             src={user.avatarURL}
             style={{ width: "100%" }}
           />
-          <Header as="h2">{user.id}</Header>
+          <Header as="h2">{user.name}</Header>
         </Segment>
         <Segment attached>
           <Header

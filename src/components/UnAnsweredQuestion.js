@@ -44,7 +44,7 @@ class UnAnsweredQuestion extends Component {
     return (
       <div style={{margin: "1% 10%"}}>
         <Header as="h2" attached="top" block>
-          {user.name} asks:
+          Would you rather...
         </Header>
         <Segment.Group horizontal style={{ marginTop: 0 }}>
           <Segment attached>
@@ -54,10 +54,9 @@ class UnAnsweredQuestion extends Component {
               src={user.avatarURL}
               style={{ width: "100%" }}
             />
-            <Header as="h2">{user.id}</Header>
+            <Header as="h2">{user.name}</Header>
           </Segment>
           <Segment attached>
-            <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
             <input
               type="radio"
