@@ -40,7 +40,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
           <Header as="h2">{user.id}</Header>
         </Segment>
         <Segment attached>
-          <Header as="h1">Would you rather...</Header>
+          <Header as="h2">Would you rather...</Header>
           <Header as="h3">
             {optionOneLength} out of {userCount} users voted for
           </Header>
@@ -73,8 +73,8 @@ const ViewPoll = ({ authedUser, location, users }) => {
           <Header as="h2">{optionTwo.text}</Header>
           {optionTwo.votes.includes(authedUser.id) ? (
             <Fragment>
-              <Header as="h1">
-                {authedUser.name}{" "}
+              <Header as="h2">
+                {authedUser.name}{" chose this answer "}
                 <Icon color="green" name="thumbs up outline" />
               </Header>
               <Progress

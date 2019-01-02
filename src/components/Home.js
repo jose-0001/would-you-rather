@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import AnsweredQuestion from "./AnsweredQuestion";
-import UnAnsweredQuestion from "./UnAnsweredQuestion";
 import "./Home.css";
 import QuestionDetail from "./QuestionDetail";
 

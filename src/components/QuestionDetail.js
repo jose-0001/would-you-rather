@@ -16,22 +16,23 @@ class QuestionDetail extends Component {
   };
 
   handleSubmit = e => {
-    const { user, optionOne, optionTwo } = this.props;
+    const { history, user, optionOne, optionTwo, id } = this.props;
     const location = {
       pathname: `/questions`,
       state: {
         user,
         optionOne,
-        optionTwo
+        optionTwo,
+        id
       }
     };
     e.preventDefault();
-    const { history, id } = this.props;
+
     history.push(location);
   };
 
   render() {
-    const { user, optionOne, optionTwo, id } = this.props;
+    const { user, optionOne, optionTwo } = this.props;
 
     return (
       <div style={{ textAlign: "center", width: "90%" }}>
@@ -80,7 +81,8 @@ function mapStateToProps({ authedUser, questions, users }, { id }) {
     user: users[question.author],
     optionOne,
     optionTwo,
-    answerText
+    answerText,
+    id
   };
 }
 

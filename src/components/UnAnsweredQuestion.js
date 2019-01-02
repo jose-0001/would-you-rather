@@ -22,17 +22,17 @@ class UnAnsweredQuestion extends Component {
     const { dispatch, history } = this.props;
     if (answer) {
       dispatch(handleAddVote({ qid, answer }));
-      history.push("/home");
+      history.push("/");
     } else {
       alert("Select an option to submit answer.")
     }
   };
 
   render() {
-    const { user, optionOne, optionTwo, id } = this.props;
-
+    const { user, optionOne, optionTwo, id } = this.props.location.state;
+    console.log(optionOne);
     return (
-      <div style={{textAlign: "center", width: "90%"}}>
+      <div style={{textAlign: "center", margin: "1% 10%"}}>
         <Header as="h2" attached="top" block>
           {user.name} asks:
         </Header>
@@ -83,18 +83,10 @@ class UnAnsweredQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions, users }, { id }) {
-  const question = questions[id];
-  const optionOne = question.optionOne;
-  const optionTwo = question.optionTwo;
-
-  const answerText = optionTwo.votes.includes(authedUser);
+function mapStateToProps({ authedUser}) {
+  // const answerText = optionTwo.votes.includes(authedUser);
   return {
     authedUser,
-    user: users[question.author],
-    optionOne,
-    optionTwo,
-    answerText
   };
 }
 
