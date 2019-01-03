@@ -6,6 +6,7 @@ import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 class QuestionDetail extends Component {
   handleSubmit = e => {
     const { history, user, optionOne, optionTwo, id } = this.props;
+    // using location object to pass in pathname and state to UnAnsweredQuestions Component
     const location = {
       pathname: `/questions`,
       state: {
@@ -16,7 +17,7 @@ class QuestionDetail extends Component {
       }
     };
     e.preventDefault();
-
+    // using history to redirect to another uri
     history.push(location);
   };
 

@@ -9,12 +9,14 @@ class Home extends Component {
     answered: false
   };
 
+  // to toggle the answer tabs with enter key or mouse click
   handleAnsweredTab = event => {
     if (event.key === "Enter" || event.button === 0) {
       this.setState({ answered: true });
     }
   };
 
+  // to toggle the answer tabs with enter key or mouse click
   handleUnAnsweredTab = event => {
     if (event.key === "Enter" || event.button === 0) {
       this.setState({ answered: false });
@@ -22,7 +24,9 @@ class Home extends Component {
   };
 
   render() {
+    // grab answer ids to map and create components
     const { unAnsweredQIds, answeredQIds } = this.props;
+    // using answered state to set the background color of answer tabs
     const { answered } = this.state;
 
     return (
@@ -72,6 +76,7 @@ class Home extends Component {
 }
 
 function mapStateToProps({ questions, authedUser }) {
+  // setting answered ids if authedUser has voted for the question
   const answeredQIds = Object.values(questions)
     .filter(({ optionOne, optionTwo }) => {
       return (
@@ -82,6 +87,7 @@ function mapStateToProps({ questions, authedUser }) {
     .sort((a, b) => b.timestamp - a.timestamp)
     .map(question => question.id);
 
+  // setting un-answered ids if authedUser has not voted for the question
   const unAnsweredQIds = Object.values(questions)
     .filter(({ optionOne, optionTwo }) => {
       return (

@@ -19,6 +19,7 @@ import FourOFour from "./FourOFour";
 import UnAnsweredQuestion from "./UnAnsweredQuestion";
 
 class App extends Component {
+  // Grab all initial data
   componentDidMount() {
     this.props.handleInitialData();
   }
@@ -27,6 +28,7 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
+          {/* Display Nav only when a user is logged in */}
           {authedUser !== null && <Nav />}
           <header>
             <LoadingBar />
@@ -39,6 +41,7 @@ class App extends Component {
                 return <Redirect to="/login" />;
               }}
             />
+            {/* Private Routes ensures that the user is logged in */}
             <PrivateRoute path="/home" component={Home} />
             <PrivateRoute path="/add" component={NewQuestion} />
             <PrivateRoute path="/leaderboard" component={LeaderBoard} />

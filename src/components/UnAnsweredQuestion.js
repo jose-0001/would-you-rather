@@ -21,6 +21,7 @@ class UnAnsweredQuestion extends Component {
     const { qid, answer } = this.state;
     const { dispatch, history, location } = this.props;
     const { user, optionOne, optionTwo, id } = location.state;
+    // using questionLocation to pass in pathname and state to ViewPoll Component
     const questionLocation = {
       pathname: `/questions/:${id}`,
       state: {
@@ -31,8 +32,7 @@ class UnAnsweredQuestion extends Component {
     };
    
     if (answer) {
-      // dispatch(handleAddVote({ qid, answer }));
-      // history.push(questionLocation);
+      // Returns a promise 
       dispatch(handleAddVote({qid, answer}))
       .then(() => history.push(questionLocation))
     } else {
