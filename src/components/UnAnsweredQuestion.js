@@ -26,13 +26,15 @@ class UnAnsweredQuestion extends Component {
       state: {
         user,
         optionOne,
-        optionTwo
+        optionTwo,
       }
     };
    
     if (answer) {
-      dispatch(handleAddVote({ qid, answer }));
-      history.push(questionLocation);
+      // dispatch(handleAddVote({ qid, answer }));
+      // history.push(questionLocation);
+      dispatch(handleAddVote({qid, answer}))
+      .then(() => history.push(questionLocation))
     } else {
       alert("Select an option to submit answer.")
     }
@@ -40,7 +42,7 @@ class UnAnsweredQuestion extends Component {
 
   render() {
     const { user, optionOne, optionTwo, id } = this.props.location.state;
-    console.log(optionOne);
+
     return (
       <div style={{margin: "1% 10%"}}>
         <Header as="h2" attached="top" block>
@@ -92,9 +94,10 @@ class UnAnsweredQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser}) {
+function mapStateToProps({ authedUser, users}) {
   return {
     authedUser,
+    users
   };
 }
 
