@@ -18,10 +18,11 @@ const ViewPoll = ({ authedUser, location, users }) => {
   const optionOneLength = optionOne.votes.length;
   const optionTwoLength = optionTwo.votes.length;
 
-  const userCount = Object.values(users).length;
+  // keep track of voter count
+  const voterCount = optionOneLength + optionTwoLength;
 
-  const percentage = (option, userCount) => {
-    return Math.floor((option / userCount) * 100);
+  const percentage = (option, voterCount) => {
+    return Math.floor((option / voterCount) * 100);
   };
 
   return (
@@ -47,13 +48,13 @@ const ViewPoll = ({ authedUser, location, users }) => {
             {optionOne.text}
           </Header>
           <Header as="h3" style={{ textAlign: "center" }}>
-            {optionOneLength} out of {userCount} users voted for
+            {optionOneLength} out of {voterCount} users voted for
           </Header>
           {optionOne.votes.includes(authedUser.id) ? (
             <Fragment>
               <Header as="h2">
                 <Progress
-                  percent={percentage(optionOneLength, userCount)}
+                  percent={percentage(optionOneLength, voterCount)}
                   inverted
                   progress
                   success
@@ -65,7 +66,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
             </Fragment>
           ) : (
             <Progress
-              percent={percentage(optionOneLength, userCount)}
+              percent={percentage(optionOneLength, voterCount)}
               inverted
               progress
               error
@@ -79,13 +80,13 @@ const ViewPoll = ({ authedUser, location, users }) => {
             {optionTwo.text}
           </Header>
           <Header as="h3" style={{ textAlign: "center" }}>
-            {optionTwoLength} out of {userCount} users voted for
+            {optionTwoLength} out of {voterCount} users voted for
           </Header>
           {optionTwo.votes.includes(authedUser.id) ? (
             <Fragment>
               <Header as="h2">
                 <Progress
-                  percent={percentage(optionTwoLength, userCount)}
+                  percent={percentage(optionTwoLength, voterCount)}
                   inverted
                   progress
                   success
@@ -97,7 +98,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
             </Fragment>
           ) : (
             <Progress
-              percent={percentage(optionTwoLength, userCount)}
+              percent={percentage(optionTwoLength, voterCount)}
               inverted
               progress
               error
