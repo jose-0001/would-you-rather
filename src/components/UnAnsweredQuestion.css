@@ -1,0 +1,12 @@
+.inputs {
+  width: 15%;
+}
+
+.option {
+  width: 85%;
+  max-width: 85%;
+}
+
+.divider {
+  width: 100%;
+}

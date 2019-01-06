@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Header, Segment, Image, Divider, Button } from "semantic-ui-react";
 import { handleAddVote } from "../actions/questions";
+import "./UnAnsweredQuestion.css";
 
 class UnAnsweredQuestion extends Component {
   state = {
@@ -27,16 +28,17 @@ class UnAnsweredQuestion extends Component {
       state: {
         user,
         optionOne,
-        optionTwo,
+        optionTwo
       }
     };
-   
+
     if (answer) {
-      // Returns a promise 
-      dispatch(handleAddVote({qid, answer}))
-      .then(() => history.push(questionLocation))
+      // Returns a promise
+      dispatch(handleAddVote({ qid, answer })).then(() =>
+        history.push(questionLocation)
+      );
     } else {
-      alert("Select an option to submit answer.")
+      alert("Select an option to submit answer.");
     }
   };
 
@@ -44,7 +46,7 @@ class UnAnsweredQuestion extends Component {
     const { user, optionOne, optionTwo, id } = this.props.location.state;
 
     return (
-      <div style={{margin: "1% 10%"}}>
+      <div style={{ margin: "1% 10%" }}>
         <Header as="h2" attached="top" block>
           Would you rather...
         </Header>
@@ -58,9 +60,17 @@ class UnAnsweredQuestion extends Component {
             />
             <Header as="h2">{user.name}</Header>
           </Segment>
-          <Segment attached>
-            <Header as="h3">{optionOne.text}</Header>
+          <Segment
+            style={{
+              display: "flex",
+              flexFlow: "row wrap",
+              alignContent: "center",
+              alignItems: "center"
+            }}
+            attached
+          >
             <input
+              className="inputs"
               type="radio"
               name="option"
               value="optionOne"
@@ -68,9 +78,14 @@ class UnAnsweredQuestion extends Component {
                 this.handleSelection(e, id);
               }}
             />
-            <Divider horizontal>Or</Divider>
-            <Header as="h3">{optionTwo.text}</Header>
+            <Header as="h3" className="option">
+              {optionOne.text}
+            </Header>
+            <Divider horizontal className="divider">
+              Or
+            </Divider>
             <input
+              className="inputs"
               type="radio"
               name="option"
               value="optionTwo"
@@ -78,6 +93,9 @@ class UnAnsweredQuestion extends Component {
                 this.handleSelection(e, id);
               }}
             />
+            <Header as="h3" className="option">
+              {optionTwo.text}
+            </Header>
             <Button
               fluid
               inverted
@@ -94,7 +112,7 @@ class UnAnsweredQuestion extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, users}) {
+function mapStateToProps({ authedUser, users }) {
   return {
     authedUser,
     users
