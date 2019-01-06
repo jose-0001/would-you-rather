@@ -54,13 +54,8 @@ export function handleAddVote(info) {
       answer: info.answer
     };
 
-    // return _saveQuestionAnswer(questionPayload)
-    //   .then(() => dispatch(addVote(questionPayload)))
-    //   .then(() => dispatch(hideLoading()));
-    return Promise.all([
-      _saveQuestionAnswer(questionPayload),
-      dispatch(addVote(questionPayload)),
-      dispatch(hideLoading())
-    ]);
+    return _saveQuestionAnswer(questionPayload)
+      .then(() => dispatch(addVote(questionPayload)))
+      .then(() => dispatch(hideLoading()));
   };
 }

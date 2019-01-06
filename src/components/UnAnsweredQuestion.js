@@ -20,8 +20,7 @@ class UnAnsweredQuestion extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { qid, answer } = this.state;
-    const { dispatch, history, location } = this.props;
-    const { user, optionOne, optionTwo, id } = location.state;
+    const { dispatch, history, user, optionOne, optionTwo, id } = this.props;
     // using questionLocation to pass in pathname and state to ViewPoll Component
     const questionLocation = {
       pathname: `/questions/:${id}`,
@@ -33,17 +32,15 @@ class UnAnsweredQuestion extends Component {
     };
 
     if (answer) {
-      // Returns a promise
-      dispatch(handleAddVote({ qid, answer })).then(() =>
-        history.push(questionLocation)
-      );
+      dispatch(handleAddVote({ qid, answer }));
+      history.push(questionLocation);
     } else {
       alert("Select an option to submit answer.");
     }
   };
 
   render() {
-    const { user, optionOne, optionTwo, id } = this.props.location.state;
+    const { user, optionOne, optionTwo, id } = this.props;
 
     return (
       <div className="unAnsweredQ">
