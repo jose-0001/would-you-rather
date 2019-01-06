@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import {
   Header,
   Segment,
@@ -10,11 +10,11 @@ import {
   Icon
 } from "semantic-ui-react";
 
-const ViewPoll = ({ authedUser, location, users }) => {
+const ViewPoll = ({ authedUser, location, optionOne, optionTwo, user }) => {
   if (location.state === undefined) {
     return <Redirect to="/404" />;
   }
-  const { optionOne, optionTwo, user } = location.state;
+
   const optionOneLength = optionOne.votes.length;
   const optionTwoLength = optionTwo.votes.length;
 
@@ -127,4 +127,4 @@ function mapStateToProps({ authedUser, users }) {
   };
 }
 
-export default connect(mapStateToProps)(ViewPoll);
+export default connect(mapStateToProps)(withRouter(ViewPoll));
