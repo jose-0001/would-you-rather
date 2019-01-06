@@ -1,9 +1,9 @@
 .main {
   display: flex;
   flex-flow: column wrap;
-  margin: 3% 10%;
+  margin: 3% 25%;
   align-items: center;
-  width: 75%;
+  width: 50%;
   box-shadow: 0px 0px 5px 0px;
 }
 

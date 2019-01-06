@@ -46,7 +46,7 @@ class UnAnsweredQuestion extends Component {
     const { user, optionOne, optionTwo, id } = this.props.location.state;
 
     return (
-      <div style={{ margin: "1% 10%" }}>
+      <div className="unAnsweredQ">
         <Header as="h2" attached="top" block>
           Would you rather...
         </Header>
@@ -64,8 +64,8 @@ class UnAnsweredQuestion extends Component {
             style={{
               display: "flex",
               flexFlow: "row wrap",
-              alignContent: "center",
-              alignItems: "center"
+              alignContent: "space-evenly",
+              alignItems: "baseline"
             }}
             attached
           >

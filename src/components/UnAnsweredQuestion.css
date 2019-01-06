@@ -1,9 +1,17 @@
+.unAnsweredQ {
+  max-width: 50%;
+  width: 85%;
+  margin: 3% 25%;
+}
+
 .inputs {
-  width: 15%;
+  width: 10%;
+  margin: 10px;
 }
 
 .option {
-  width: 85%;
+  width: 80%;
+  margin: 10px;
   max-width: 85%;
 }
 

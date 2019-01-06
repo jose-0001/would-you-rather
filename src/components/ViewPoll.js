@@ -26,7 +26,7 @@ const ViewPoll = ({ authedUser, location, users }) => {
   };
 
   return (
-    <div style={{ margin: "1% 10%" }}>
+    <div style={{ width: "50%", margin: "1% 25%" }}>
       <Header as="h2" attached="top" block>
         Would you rather...
       </Header>
@@ -52,17 +52,22 @@ const ViewPoll = ({ authedUser, location, users }) => {
           </Header>
           {optionOne.votes.includes(authedUser.id) ? (
             <Fragment>
-              <Header as="h2">
-                <Progress
-                  percent={percentage(optionOneLength, voterCount)}
-                  inverted
-                  progress
-                  success
-                />
-                <Icon color="green" name="thumbs up outline" />
-                <br />
-                {`${authedUser.name} chose this answer `}
-              </Header>
+              <Progress
+                percent={percentage(optionOneLength, voterCount)}
+                inverted
+                progress
+                success
+              />
+              <Header
+                as="h4"
+                style={{
+                  width: "75%",
+                  float: "left",
+                  textAlign: "center",
+                  margin: "0"
+                }}
+              >{`${authedUser.name} chose this answer `}</Header>
+              <Icon color="green" name="thumbs up outline" />
             </Fragment>
           ) : (
             <Progress
@@ -84,17 +89,22 @@ const ViewPoll = ({ authedUser, location, users }) => {
           </Header>
           {optionTwo.votes.includes(authedUser.id) ? (
             <Fragment>
-              <Header as="h2">
-                <Progress
-                  percent={percentage(optionTwoLength, voterCount)}
-                  inverted
-                  progress
-                  success
-                />
-                <Icon color="green" name="thumbs up outline" />
-                <br />
-                {`${authedUser.name} chose this answer `}
-              </Header>
+              <Progress
+                percent={percentage(optionTwoLength, voterCount)}
+                inverted
+                progress
+                success
+              />
+              <Header
+                as="h4"
+                style={{
+                  width: "75%",
+                  float: "left",
+                  textAlign: "center",
+                  margin: "0"
+                }}
+              >{`${authedUser.name} chose this answer `}</Header>
+              <Icon color="green" name="thumbs up outline" />
             </Fragment>
           ) : (
             <Progress

@@ -25,7 +25,12 @@ class QuestionDetail extends Component {
     const { user, optionOne, optionTwo } = this.props;
 
     return (
-      <div style={{ textAlign: "center", width: "90%" }}>
+      <div
+        style={{
+          textAlign: "center",
+          width: "90%"
+        }}
+      >
         <Header as="h2" attached="top" block>
           {user.name} asks:
         </Header>
@@ -39,7 +44,15 @@ class QuestionDetail extends Component {
             />
             <Header as="h2">{user.id}</Header>
           </Segment>
-          <Segment attached>
+          <Segment
+            attached
+            style={{
+              display: "flex",
+              flexFlow: "column wrap",
+              alignContent: "center",
+              justifyContent: "center"
+            }}
+          >
             <Header as="h1">Would you rather...</Header>
             <Header as="h3">{optionOne.text}</Header>
             <Divider horizontal>Or</Divider>
