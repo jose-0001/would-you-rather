@@ -8,13 +8,7 @@ class QuestionDetail extends Component {
     const { history, user, optionOne, optionTwo, id } = this.props;
     // using location object to pass in pathname and state to UnAnsweredQuestions Component
     const location = {
-      pathname: `/questions`,
-      state: {
-        user,
-        optionOne,
-        optionTwo,
-        id
-      }
+      pathname: `/questions/:${id}`,
     };
     e.preventDefault();
     // using history to redirect to another uri

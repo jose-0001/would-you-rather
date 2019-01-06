@@ -14,9 +14,8 @@ import Home from "./Home";
 import Nav from "./Nav";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
-import ViewPoll from "./ViewPoll";
 import FourOFour from "./FourOFour";
-import UnAnsweredQuestion from "./UnAnsweredQuestion";
+import PollDetail from "./PollDetail";
 
 class App extends Component {
   // Grab all initial data
@@ -46,11 +45,9 @@ class App extends Component {
             <PrivateRoute path="/add" component={NewQuestion} />
             <PrivateRoute path="/leaderboard" component={LeaderBoard} />
             <PrivateRoute
-              exact
-              path="/questions"
-              component={UnAnsweredQuestion}
+              path="/questions/:question_id"
+              component={PollDetail}
             />
-            <PrivateRoute path="/questions/:questionId" component={ViewPoll} />
             <Route path="/login" component={Login} />
             <Route path="/404" component={FourOFour} />
             <Route render={() => <Redirect to="/" />} />
