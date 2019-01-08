@@ -26,11 +26,13 @@ function PollDetail({ hasAnswered, optionOne, optionTwo, user, id }) {
 
 function mapStateToProps({ questions, authedUser, users }, { match }) {
   const id = match.params.question_id.slice(1);
+  // check if match.params.questions id matches any of the questions
   const idChecker = Object.values(questions).some(question => {
     return question.id === id;
   });
-  // question object contains optionOne, optionTwo, author, and id
+  // return appropriate data if idChecker is true
   if (idChecker) {
+    // question object contains optionOne, optionTwo, author, and id
     const question = questions[id];
     const { optionOne, optionTwo } = question;
     return {
@@ -44,6 +46,7 @@ function mapStateToProps({ questions, authedUser, users }, { match }) {
         optionTwo.votes.includes(authedUser.id)
     };
   } else {
+    // set id to false to render 404 page
     return {
       id: false
     };
